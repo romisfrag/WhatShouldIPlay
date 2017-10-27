@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="romisfrag.whatshouldiplay.GamePackage.ParameterMenu">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick A CLass"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/class_id_layout">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Druid"
+            android:id="@+id/druid_button"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hunter"
+            android:id="@+id/hunter_button"
+            android:layout_toRightOf="@+id/druid_button"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mage"
+            android:id="@+id/mage_button"
+            android:layout_toRightOf="@+id/hunter_button"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paladin"
+            android:id="@+id/paladin_button"
+            android:layout_below="@+id/druid_button"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Priest"
+            android:id="@+id/priest_button"
+            android:layout_toRightOf="@id/paladin_button"
+            android:layout_below="@id/druid_button"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rogue"
+            android:id="@+id/rogue_button"
+            android:layout_toRightOf="@+id/priest_button"
+            android:layout_below="@id/druid_button"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shaman"
+            android:id="@+id/shaman_button"
+            android:layout_below="@id/paladin_button"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Warlock"
+            android:id="@+id/warlock_button"
+            android:layout_below="@id/paladin_button"
+            android:layout_toRightOf="@id/shaman_button"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Warrior"
+            android:id="@+id/warrior_button"
+            android:layout_toRightOf="@id/warlock_button"
+            android:layout_below="@id/paladin_button"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose your game mode"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/parameter_linear_game_mode"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Validate"
+        android:id="@+id/parameter_validate_button"
+        />
+
+
+
+
+
+</LinearLayout>
