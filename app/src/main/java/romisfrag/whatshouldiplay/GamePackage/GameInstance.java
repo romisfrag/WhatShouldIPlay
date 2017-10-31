@@ -4,15 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Display.CardElementListe;
+import romisfrag.whatshouldiplay.Enumerations.HeroClass;
+import romisfrag.whatshouldiplay.Enumerations.Mode;
 
-import static romisfrag.whatshouldiplay.GamePackage.HeroClass.DRUID;
-
-/**
- * Created by delgado on 16/10/17.
- */
-
-enum HeroClass { DRUID, HUNTER, MAGE, PALADIN, PRIEST, ROGUE, SHAMAN, WARLOCK, WARRIOR};
-enum Mode {STANDARD, ARENA, WILD}
+;
 //TODO :: need to complete this
 
 public class GameInstance implements Serializable{

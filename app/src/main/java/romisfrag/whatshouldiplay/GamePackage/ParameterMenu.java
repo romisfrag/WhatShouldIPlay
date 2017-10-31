@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.view.ViewGroup.LayoutParams;
 
 import romisfrag.whatshouldiplay.Display.DisplayCards;
+import romisfrag.whatshouldiplay.Enumerations.Mode;
 import romisfrag.whatshouldiplay.R;
 
 public class ParameterMenu extends AppCompatActivity {
