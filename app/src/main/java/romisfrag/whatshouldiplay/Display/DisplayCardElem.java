@@ -1,8 +1,10 @@
 package romisfrag.whatshouldiplay.Display;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +17,8 @@ import java.net.URLConnection;
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
 import romisfrag.whatshouldiplay.R;
 import romisfrag.whatshouldiplay.Requester;
+
+import static android.view.View.VISIBLE;
 
 public class DisplayCardElem extends AppCompatActivity {
 
@@ -35,41 +39,9 @@ public class DisplayCardElem extends AppCompatActivity {
 
         t.setText(card.getName());
 
-        Drawable png = LoadImageFromWebOperations(card.get_imageUrl());
-        img.setImageDrawable(png);
-
-
-    }
-
-    public Drawable LoadImageFromWebOperations(String url) {
-        String newurl = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/EX1_116.png";
-        //we first try to get the image from the url
-        try {
-            URL o_url = new URL(newurl);
-            //InputStream is = (InputStream) new URL(newurl).getContent();
-            InputStream is = null;
-            URLConnection c = o_url.openConnection();
-            c.getContent();
-
-
-            //and then convert it to a drawable object
-            try{
-                Drawable d = Drawable.createFromStream(is,"lol");
-                return d;
-            } catch (Exception e){
-                Toast.makeText(this, "Can't Drawable", Toast.LENGTH_SHORT).show();
-                return null;
-            }
-        } catch (MalformedURLException e) {
-            Toast.makeText(this, "Bad URL", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            return null;
-        } catch (Exception e){
-            Toast.makeText(this, "Can't load stream", Toast.LENGTH_SHORT).show();
-            return null;
-        }
+        // call to asynchronous task
+        new ImageLoader(card.get_imageUrl(), img).execute();
 
     }
-
 
 }
