@@ -3,22 +3,16 @@ package romisfrag.whatshouldiplay.Display;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
-import romisfrag.whatshouldiplay.GamePackage.ParameterMenu;
 import romisfrag.whatshouldiplay.Interfaces.UseRequester;
 import romisfrag.whatshouldiplay.JsonTransformer;
 import romisfrag.whatshouldiplay.R;
-import romisfrag.whatshouldiplay.Requester;
+import romisfrag.whatshouldiplay.input_output.Requester;
 
 
 public class DisplayCards extends AppCompatActivity implements UseRequester{

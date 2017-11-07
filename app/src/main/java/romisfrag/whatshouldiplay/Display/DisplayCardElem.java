@@ -1,24 +1,12 @@
 package romisfrag.whatshouldiplay.Display;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
 import romisfrag.whatshouldiplay.R;
-import romisfrag.whatshouldiplay.Requester;
-
-import static android.view.View.VISIBLE;
 
 public class DisplayCardElem extends AppCompatActivity {
 
