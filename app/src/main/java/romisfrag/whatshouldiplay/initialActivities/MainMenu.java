@@ -7,9 +7,10 @@ import android.view.View;
 import android.widget.Button;
 
 import romisfrag.whatshouldiplay.GamePackage.ParameterMenu;
+import romisfrag.whatshouldiplay.Interfaces.UseRequester;
 import romisfrag.whatshouldiplay.R;
 
-public class MainMenu extends AppCompatActivity {
+public class MainMenu extends AppCompatActivity implements UseRequester{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,19 @@ public class MainMenu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button update_button = (Button)findViewById(R.id.updateButton);
+        update_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public void notifyEndRequest() {
 
     }
 }

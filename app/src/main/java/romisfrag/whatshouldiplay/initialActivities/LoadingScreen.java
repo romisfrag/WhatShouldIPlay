@@ -37,6 +37,7 @@ public class LoadingScreen extends AppCompatActivity implements UseRequester{
         //finding if the file is already here
         TextView tv = (TextView)findViewById(R.id.textLoad);
         tv.setText("File is here?");
+
         if (storageManager.isFileHere(fileName)){
             String temp;
             temp = storageManager.readFile(fileName);
@@ -50,6 +51,7 @@ public class LoadingScreen extends AppCompatActivity implements UseRequester{
     }
 
     private void endingApp(String res){
+
         ApplicationCustom app = (ApplicationCustom)getApplication();
         //parsing the json
         jsonTransformer.addStr(res);
@@ -61,6 +63,7 @@ public class LoadingScreen extends AppCompatActivity implements UseRequester{
         //starting the next activity
         Intent intent = new Intent(LoadingScreen.this, MainMenu.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
