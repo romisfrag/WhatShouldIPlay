@@ -15,10 +15,10 @@ import romisfrag.whatshouldiplay.R;
 import romisfrag.whatshouldiplay.input_output.Requester;
 
 
-public class DisplayCards extends AppCompatActivity implements UseRequester{
+public class DisplayCards extends AppCompatActivity {
 
     GameInstance game_instance;
-    Requester requester;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,6 @@ public class DisplayCards extends AppCompatActivity implements UseRequester{
         setContentView(R.layout.display_card_layout);
 
         game_instance = (GameInstance) getIntent().getSerializableExtra("gameinstance");
-        requester = new Requester(this, this);
 
         /*final ArrayList<CardElementListe> listeOfCard = new ArrayList<CardElementListe>();
         listeOfCard.add(new CardElementListe("lol", 1));
@@ -41,34 +40,14 @@ public class DisplayCards extends AppCompatActivity implements UseRequester{
 
         //starting the request
         // TODO :: use the good informations from gameInstance to load the card
-        if (!game_instance.get_listeLoaded()){
-            requester.sendAllCards();
-            t.setText("Loading");
-        }
-        else{
-            displayListe(game_instance.get_listeCard());
-            t.setText("Loaded");
-        }
-
-
-    }
-
-
-
-    //méthode qui récupère le résultat de la requête pour en traiter la liste et l'afficher
-    public void parseResultAndPut(){
-        String res = requester.getResRequest();
-        JsonTransformer jt = new JsonTransformer(DisplayCards.this,res);
-        ArrayList<CardElementListe> listeOfCard = new ArrayList<CardElementListe>();
-
-        listeOfCard.addAll(jt.getCardsListStandard());
-        displayListe(listeOfCard);
-
-        //changing the text
-        final TextView t = (TextView) findViewById(R.id.test);
+        displayListe(game_instance.get_listeCard());
         t.setText("Loaded");
 
     }
+
+
+
+
 
     //affiche la liste fournie en argument
     public void displayListe(ArrayList<CardElementListe> listeOfCard) {
@@ -87,8 +66,4 @@ public class DisplayCards extends AppCompatActivity implements UseRequester{
         startActivity(i);
     }
 
-    @Override
-    public void notifyEndRequest() {
-        parseResultAndPut();
-    }
 }

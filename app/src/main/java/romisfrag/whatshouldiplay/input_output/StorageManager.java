@@ -25,6 +25,12 @@ public class StorageManager {
         this.ctxt = ctxt;
     }
 
+    public boolean isFileHere(String fileName){
+        File file = new File(ctxt.getFilesDir(), fileName);
+        return file.exists();
+    }
+
+
     public void saveString(String fileName,String content){
 
         File file = new File(ctxt.getFilesDir(), fileName);

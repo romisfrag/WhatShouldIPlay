@@ -1,4 +1,4 @@
-package romisfrag.whatshouldiplay;
+package romisfrag.whatshouldiplay.initialActivities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import romisfrag.whatshouldiplay.GamePackage.ParameterMenu;
+import romisfrag.whatshouldiplay.R;
 
 public class MainMenu extends AppCompatActivity {
 

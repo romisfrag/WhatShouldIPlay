@@ -71,7 +71,7 @@ public class Requester {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context,"Fail",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"Requester Fail",Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override

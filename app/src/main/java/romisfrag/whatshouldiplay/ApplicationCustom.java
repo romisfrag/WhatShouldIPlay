@@ -1,9 +1,15 @@
 package romisfrag.whatshouldiplay;
 
 import android.app.Application;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import romisfrag.whatshouldiplay.Display.CardElementListe;
+import romisfrag.whatshouldiplay.Display.DisplayCards;
 import romisfrag.whatshouldiplay.Interfaces.UseRequester;
+import romisfrag.whatshouldiplay.input_output.Requester;
 import romisfrag.whatshouldiplay.input_output.StorageManager;
 
 /**
@@ -12,22 +18,27 @@ import romisfrag.whatshouldiplay.input_output.StorageManager;
 
 public class ApplicationCustom extends Application implements UseRequester{
 
-    StorageManager storageManager;
+    private ArrayList<CardElementListe> appCardElementListe;
+
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Toast.makeText(this, "on a change", Toast.LENGTH_SHORT).show();
-        storageManager = new StorageManager(getApplicationContext());
-        storageManager.saveString("lol.txt","content easy kdlfgkdflgd");
+    }
 
-        String res = storageManager.readFile("lol.txt");
-        Toast.makeText(this, "res " + res, Toast.LENGTH_SHORT).show();
+
+    public void setListe(ArrayList<CardElementListe> liste){
+        appCardElementListe = liste;
+    }
+
+    public ArrayList<CardElementListe> getAppCards(){
+        return appCardElementListe;
     }
 
 
     @Override
     public void notifyEndRequest() {
-        Toast.makeText(this, "TODO notify end request", Toast.LENGTH_SHORT).show();
+
     }
+
 }

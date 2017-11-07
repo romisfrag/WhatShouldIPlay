@@ -16,16 +16,15 @@ public class GameInstance implements Serializable{
     Mode game_mode;
     HeroClass game_class;
     int turn;
-    boolean listLoaded;
     ArrayList<CardElementListe> listeCard;
 
 
 
-    public GameInstance(){
+    public GameInstance(ArrayList<CardElementListe> listeCard){
         game_mode = Mode.STANDARD;
         game_class = HeroClass.DRUID;
         turn = 0;
-        listLoaded = false;
+        this.listeCard = listeCard;
     }
 
 
@@ -41,10 +40,6 @@ public class GameInstance implements Serializable{
 
     public int get_turn(){
         return turn;
-    }
-
-    public boolean get_listeLoaded(){
-        return listLoaded;
     }
 
     public ArrayList<CardElementListe> get_listeCard(){
@@ -65,10 +60,6 @@ public class GameInstance implements Serializable{
         turn = t;
     }
 
-    public void add_liste (ArrayList<CardElementListe> liste){
-        this.listeCard = liste;
-        listLoaded = true;
-    }
 
 
 

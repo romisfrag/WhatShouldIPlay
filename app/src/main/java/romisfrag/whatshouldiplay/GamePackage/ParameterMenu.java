@@ -1,5 +1,6 @@
 package romisfrag.whatshouldiplay.GamePackage;
 
+import android.app.Application;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Toast;
 
+import romisfrag.whatshouldiplay.ApplicationCustom;
 import romisfrag.whatshouldiplay.Display.DisplayCards;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
 import romisfrag.whatshouldiplay.R;
@@ -21,8 +24,10 @@ public class ParameterMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parameter_menu_layout);
 
-        game_instance = new GameInstance();
+        ApplicationCustom app = (ApplicationCustom)getApplication();
 
+        game_instance = new GameInstance(app.getAppCards());
+        Toast.makeText(app, "test : " + game_instance.get_listeCard().size(), Toast.LENGTH_SHORT).show();
         //SECTION : generating the mode selection buttons
 
 
