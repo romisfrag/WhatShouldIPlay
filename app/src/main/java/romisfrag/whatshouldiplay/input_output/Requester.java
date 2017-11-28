@@ -64,14 +64,14 @@ public class Requester {
                     @Override
                     public void onResponse(String response) {
                         resRequest = response;
-                        Toast.makeText(context, "Succes", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "Succes", Toast.LENGTH_SHORT).show();
                         toNotify.notifyEndRequest();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context,"Requester Fail",Toast.LENGTH_LONG).show();
+//                        Toast.makeText(context,"Requester Fail",Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override

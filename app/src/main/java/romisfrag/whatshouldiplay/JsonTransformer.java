@@ -46,7 +46,7 @@ public class JsonTransformer {
         if(!isThereObject){
             return res;
         }
-        Toast.makeText(context, "On est la poto", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "On est la poto", Toast.LENGTH_SHORT).show();
 
         JSONArray tempArray = null;
         JSONObject tempElem;

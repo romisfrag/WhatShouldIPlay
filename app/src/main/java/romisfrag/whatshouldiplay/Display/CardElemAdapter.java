@@ -55,7 +55,7 @@ public class CardElemAdapter extends ArrayAdapter<CardElementListe> {
             //TODO :: solve this problem
             @Override
             public void onClick(View v) {
-                Toast.makeText(displayCards, "onClick " + tempElem.get_imageUrl(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(displayCards, "onClick " + tempElem.get_imageUrl(), Toast.LENGTH_SHORT).show();
                 displayCards.diplayCard(tempElem);
             }
         });
