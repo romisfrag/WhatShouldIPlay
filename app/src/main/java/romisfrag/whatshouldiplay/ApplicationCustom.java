@@ -27,8 +27,8 @@ public class ApplicationCustom extends Application implements UseRequester{
     }
 
 
-    public void setListe(ArrayList<CardElementListe> liste){
-        appCardElementListe = liste;
+    public void setList(ArrayList<CardElementListe> list){
+        appCardElementListe = list;
     }
 
     public ArrayList<CardElementListe> getAppCards(){

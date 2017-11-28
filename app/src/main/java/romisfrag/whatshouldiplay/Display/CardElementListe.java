@@ -39,8 +39,16 @@ public class CardElementListe implements Serializable {
         return image_url;
     }
 
+    public String getHeroClass() {
+        return heroClass;
+    }
 
+    public String getRace() {
+        return race;
+    }
 
-
+    public boolean isCollectible() {
+        return isCollectible;
+    }
 
 }

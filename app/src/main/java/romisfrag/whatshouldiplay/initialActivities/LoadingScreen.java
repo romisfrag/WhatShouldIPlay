@@ -4,13 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.ApplicationCustom;
 import romisfrag.whatshouldiplay.Display.CardElementListe;
-import romisfrag.whatshouldiplay.GamePackage.ParameterMenu;
 import romisfrag.whatshouldiplay.Interfaces.UseRequester;
 import romisfrag.whatshouldiplay.JsonTransformer;
 import romisfrag.whatshouldiplay.R;
@@ -59,7 +57,7 @@ public class LoadingScreen extends AppCompatActivity implements UseRequester{
         //updating the list in the app
         ArrayList<CardElementListe> l = jsonTransformer.getCardsListStandard();
 //        Toast.makeText(app, "length " + l.size(), Toast.LENGTH_SHORT).show();
-        app.setListe(l);
+        app.setList(l);
         //starting the next activity
         Intent intent = new Intent(LoadingScreen.this, MainMenu.class);
         startActivity(intent);

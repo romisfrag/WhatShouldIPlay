@@ -1,5 +1,9 @@
 package romisfrag.whatshouldiplay.GamePackage;
 
+import android.app.Application;
+import android.util.Log;
+import android.widget.Toast;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -16,15 +20,15 @@ public class GameInstance implements Serializable{
     private Mode game_mode;
     private HeroClass game_class;
     private int turn;
-    private ArrayList<CardElementListe> listeCard;
+    private ArrayList<CardElementListe> cardList;
 
 
 
-    public GameInstance(ArrayList<CardElementListe> listeCard){
+    public GameInstance(ArrayList<CardElementListe> cardList){
         game_mode = Mode.STANDARD;
         game_class = HeroClass.DRUID;
         turn = 0;
-        this.listeCard = listeCard;
+        this.cardList = cardList;
     }
 
 
@@ -43,7 +47,16 @@ public class GameInstance implements Serializable{
     }
 
     public ArrayList<CardElementListe> get_listeCard(){
-        return listeCard;
+        ArrayList<CardElementListe> newList = new ArrayList<>();
+
+        for (CardElementListe c : cardList) {
+            if (c.getHeroClass().toUpperCase().equals("NEUTRAL")
+                    || c.getHeroClass().toUpperCase().equals(game_class.toString().toUpperCase())) {
+                newList.add(c);
+            }
+        }
+
+        return newList;
     }
 
 
