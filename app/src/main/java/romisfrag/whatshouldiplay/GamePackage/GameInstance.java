@@ -13,10 +13,10 @@ import romisfrag.whatshouldiplay.Enumerations.Mode;
 public class GameInstance implements Serializable{
 
     //Here are all the parameters that define a game
-    Mode game_mode;
-    HeroClass game_class;
-    int turn;
-    ArrayList<CardElementListe> listeCard;
+    private Mode game_mode;
+    private HeroClass game_class;
+    private int turn;
+    private ArrayList<CardElementListe> listeCard;
 
 
 

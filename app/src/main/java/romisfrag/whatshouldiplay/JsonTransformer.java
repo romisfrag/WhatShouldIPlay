@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Display.CardElementListe;
+import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
 
 /**
@@ -52,7 +53,9 @@ public class JsonTransformer {
         JSONObject tempElem;
         String tempName;
         int tempCost;
-        String tempUrl;
+        String tempUrl, tempRace, tempClass;
+        boolean tempsIsCollectible;
+
         //Searching for all the card of standard extensions
         for(StandardExtensions e : StandardExtensions.values()){
             switch(e){
@@ -79,7 +82,10 @@ public class JsonTransformer {
                     tempName = tempElem.getString("name");
                     tempCost = tempElem.getInt("cost");
                     tempUrl = tempElem.getString("img");
-                    res.add(new CardElementListe(tempName,tempCost,tempUrl));
+                    tempClass = tempElem.getString("playerClass");
+                    tempsIsCollectible = tempElem.getBoolean("collectible");
+                    tempRace = tempElem.getString("race");
+                    res.add(new CardElementListe(tempName,tempCost,tempUrl, tempClass, tempsIsCollectible, tempRace));
                 } catch (JSONException e1) {
                     tempName = "";
                     try {
