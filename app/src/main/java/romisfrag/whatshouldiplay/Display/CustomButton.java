@@ -13,13 +13,13 @@ import romisfrag.whatshouldiplay.Enumerations.HeroClass;
  */
 
 @SuppressLint("AppCompatCustomView")
-public class HeroButton extends Button {
+public class CustomButton extends Button {
 
     private Drawable img;
     private Drawable selectedImg;
     private HeroClass hero;
 
-    public HeroButton(Context context, Drawable img1, Drawable selectedImg, HeroClass hero) {
+    public CustomButton(Context context, Drawable img1, Drawable selectedImg, HeroClass hero) {
         super(context);
         this.img = img;
         this.img = selectedImg;

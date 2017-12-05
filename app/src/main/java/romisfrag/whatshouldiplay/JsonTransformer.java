@@ -53,7 +53,7 @@ public class JsonTransformer {
         JSONObject tempElem;
         String tempName;
         int tempCost;
-        String tempUrl, tempRace, tempClass, tempSet;
+        String tempUrl, tempRace, tempClass, tempSet,tempGold;
         boolean tempsIsCollectible;
 
         //Searching for all the card of standard extensions
@@ -70,18 +70,30 @@ public class JsonTransformer {
                 try {
                     tempElem = json.getJSONObject(i);
                     tempName = tempElem.getString("name");
+                    tempUrl = tempElem.getString("img");
+                    try{
+                        tempGold = tempElem.getString("imgGold");
+                    } catch (JSONException e){
+                        tempGold = tempUrl;
+                    }
                     try {
                         tempCost = tempElem.getInt("cost");
-                        tempRace = tempElem.getString("race");
-                    } catch (JSONException e) {
+                    } catch (JSONException e){
                         tempCost = 11;
+                    }
+
+                    try {
+                        tempRace = tempElem.getString("race");
+
+                    } catch (JSONException e) {
                         tempRace = "Sort";
                     }
-                    tempUrl = tempElem.getString("img");
+
                     tempClass = tempElem.getString("playerClass");
                     tempsIsCollectible = tempElem.getBoolean("collectible");
                     tempSet = tempElem.getString("cardSet");
-                    res.add(new CardElementListe(tempName, tempCost, tempUrl, HeroClass.stringToHeroClass(tempClass), tempSet, tempsIsCollectible, tempRace));
+                    res.add(new CardElementListe(tempName, tempCost, tempUrl,
+                            HeroClass.stringToHeroClass(tempClass), tempSet, tempsIsCollectible, tempRace,tempGold));
                 } catch (JSONException e1) {
                     tempName = "";
                     try {

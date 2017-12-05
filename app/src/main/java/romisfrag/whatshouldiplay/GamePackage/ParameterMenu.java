@@ -1,33 +1,31 @@
 package romisfrag.whatshouldiplay.GamePackage;
 
-import android.app.Application;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import romisfrag.whatshouldiplay.ApplicationCustom;
 import romisfrag.whatshouldiplay.Display.DisplayCards;
-import romisfrag.whatshouldiplay.Display.HeroButton;
+import romisfrag.whatshouldiplay.Display.CustomButton;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
 import romisfrag.whatshouldiplay.R;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-import static android.widget.Toast.LENGTH_SHORT;
 
 public class ParameterMenu extends AppCompatActivity {
 
     //GameInstance game_instance;
     Mode mode = Mode.WILD;
     HeroClass heroClass = HeroClass.DRUID;
+    boolean heroSet = false;
+    boolean modeSet = false;
+
+    CustomButton heroButton = null;
+    Button modeButton = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +34,6 @@ public class ParameterMenu extends AppCompatActivity {
 
         final ApplicationCustom app = (ApplicationCustom)getApplication();
 
-        //game_instance = new GameInstance(app.getAppCards(), );
-//        Toast.makeText(app, "test : " + game_instance.get_listeCard().size(), Toast.LENGTH_SHORT).show();
 
         final Button validate = (Button)findViewById(R.id.parameter_validate_button);
         validate.setEnabled(false);
@@ -47,12 +43,13 @@ public class ParameterMenu extends AppCompatActivity {
         LinearLayout hero_class_layout = (LinearLayout) findViewById(R.id.class_id_layout);
 
         HeroClass choice = null;
-        Button current;
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);;
         LinearLayout newLine = null;
         int count = 0;
 
         for (HeroClass h : HeroClass.values()) {
+            if (h.equals(HeroClass.NEUTRAL))
+                continue;
             final HeroClass currentHero = h;
             if (count%3 == 0) {
                 newLine = new LinearLayout(getApplicationContext());
@@ -60,20 +57,24 @@ public class ParameterMenu extends AppCompatActivity {
                 newLine.setOrientation(LinearLayout.HORIZONTAL);
                 hero_class_layout.addView(newLine);
             }
-            current = new HeroButton(getApplicationContext(),
+            heroButton = new CustomButton(getApplicationContext(),
                                      getResources().getDrawable(R.drawable.warrior),
                                      getResources().getDrawable(R.drawable.warrior),
                                      currentHero);
-            current.setText(h.toString());
-            current.setOnClickListener(new View.OnClickListener() {
+            heroButton.setText(h.toString());
+            final Button finalCurrent1 = heroButton;
+            heroButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    validate.setEnabled(true);
+                    heroButton.setEnabled(true);
+                    heroButton = (CustomButton) finalCurrent1;
+                    finalCurrent1.setEnabled(false);
+                    heroSet = true;
+                    validate.setEnabled(heroSet && modeSet);
                     heroClass = currentHero;
-                    Toast.makeText(app, currentHero.toString(), LENGTH_SHORT).show();
                 }
             });
-            newLine.addView(current);
+            newLine.addView(heroButton);
             count++;
         }
 
@@ -82,54 +83,25 @@ public class ParameterMenu extends AppCompatActivity {
         for(Mode m : Mode.values()){
             final Mode currentMode = m;
             //instanciation before looping
-            current = new Button(getApplicationContext());
+            modeButton = new Button(getApplicationContext());
             lp = new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-            current.setText(currentMode.toString());
-            current.setOnClickListener(new View.OnClickListener() {
+            modeButton.setText(currentMode.toString());
+            final Button finalCurrent = modeButton;
+            modeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    modeButton.setEnabled(true);
+                    modeButton = finalCurrent;
+                    finalCurrent.setEnabled(false);
+                    modeSet = true;
+                    validate.setEnabled(heroSet && modeSet);
                     mode = currentMode;
                 }
             });
-//            switch(m){
-//                case ARENA :
-//                    current.setText("Arena");
-//                    current.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            game_instance.set_game_mode(Mode.ARENA);
-//                        }
-//                    });
-//                    break;
-//                case STANDARD:
-//                    current.setText("Standard");
-//                    current.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            game_instance.set_game_mode(Mode.STANDARD);
-//                        }
-//                    });
-//                    break;
-//                case WILD:
-//                    current.setText("Wild");
-//                    current.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            game_instance.set_game_mode(Mode.WILD);
-//                        }
-//                    });
-//                    break;
-//            }
-            current.setLayoutParams(lp);
+            modeButton.setLayoutParams(lp);
             //adding the button to the layout
-            gameMode_l.addView(current);
+            gameMode_l.addView(modeButton);
         }
-
-        /*current = new Button(this);
-        current.setText("Easy");
-        gameMode_l.addView(current);
-        */
-
 
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +113,17 @@ public class ParameterMenu extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final Button validate = (Button)findViewById(R.id.parameter_validate_button);
+        validate.setEnabled(false);
+        modeSet = false;
+        heroSet = false;
+        modeButton.setEnabled(true);
+        heroButton.setEnabled(true);
     }
 
 

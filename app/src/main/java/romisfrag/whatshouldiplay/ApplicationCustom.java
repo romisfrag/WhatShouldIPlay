@@ -19,11 +19,12 @@ import romisfrag.whatshouldiplay.input_output.StorageManager;
 public class ApplicationCustom extends Application implements UseRequester{
 
     private ArrayList<CardElementListe> appCardElementListe;
-
+    private boolean goldMode;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        goldMode = false;
     }
 
 
@@ -40,5 +41,11 @@ public class ApplicationCustom extends Application implements UseRequester{
     public void notifyEndRequest() {
 
     }
+
+    public void switchGoldMode(){
+        goldMode = !goldMode;
+    }
+    public boolean getGoldMode(){return goldMode;}
+
 
 }
