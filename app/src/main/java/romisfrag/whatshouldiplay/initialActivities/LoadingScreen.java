@@ -53,10 +53,8 @@ public class LoadingScreen extends AppCompatActivity implements UseRequester{
         ApplicationCustom app = (ApplicationCustom)getApplication();
         //parsing the json
         jsonTransformer.addStr(res);
-//        Toast.makeText(app, "length str "+ res.length(), Toast.LENGTH_SHORT).show();
         //updating the list in the app
         ArrayList<CardElementListe> l = jsonTransformer.getCardsListStandard();
-//        Toast.makeText(app, "length " + l.size(), Toast.LENGTH_SHORT).show();
         app.setList(l);
         //starting the next activity
         Intent intent = new Intent(LoadingScreen.this, MainMenu.class);

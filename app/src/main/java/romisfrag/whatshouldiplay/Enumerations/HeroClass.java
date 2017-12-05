@@ -14,4 +14,10 @@ public enum HeroClass {
     SHAMAN,
     WARLOCK,
     WARRIOR,
+    NEUTRAL;
+
+    static public HeroClass stringToHeroClass (String hero) {
+        return HeroClass.valueOf(hero.toUpperCase());
+    }
+
 }

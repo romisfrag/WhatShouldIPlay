@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Display.CardElementListe;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
-import romisfrag.whatshouldiplay.Enumerations.Wild;
-import romisfrag.whatshouldiplay.GamePackage.GameInstance;
+import romisfrag.whatshouldiplay.Enumerations.Mode;
 
 /**
  * Created by delgado on 16/10/17.
@@ -58,11 +57,11 @@ public class JsonTransformer {
         boolean tempsIsCollectible;
 
         //Searching for all the card of standard extensions
-        for(Wild e : Wild.values()){
+        for(String e : Mode.getWildExtension()){
             try {
-                tempArray.add(jsonObject.getJSONArray(e.toString()));
+                tempArray.add(jsonObject.getJSONArray(e));
             } catch (JSONException e1) {
-                Toast.makeText(context, "error getting card: "+e.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "error getting card: "+e, Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -82,16 +81,16 @@ public class JsonTransformer {
                     tempClass = tempElem.getString("playerClass");
                     tempsIsCollectible = tempElem.getBoolean("collectible");
                     tempSet = tempElem.getString("cardSet");
-                    res.add(new CardElementListe(tempName, tempCost, tempUrl, tempClass, tempSet, tempsIsCollectible, tempRace));
+                    res.add(new CardElementListe(tempName, tempCost, tempUrl, HeroClass.stringToHeroClass(tempClass), tempSet, tempsIsCollectible, tempRace));
                 } catch (JSONException e1) {
                     tempName = "";
                     try {
                         tempElem = json.getJSONObject(i);
                         tempName = tempElem.getString("name");
                     } catch (JSONException e2) {
-                        //Toast.makeText(context, "La fin de la fin", Toast.LENGTH_SHORT).show();
+
                     }
-                    //Toast.makeText(context, "getCardsListStandard" + tempName, Toast.LENGTH_SHORT).show();
+
                 }
             }
         }

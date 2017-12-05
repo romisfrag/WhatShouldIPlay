@@ -14,11 +14,11 @@ public class CardElementListe implements Serializable {
     String name;
     int cost;
     String image_url, race;
-    String heroClass;
+    HeroClass heroClass;
     String set;
     boolean isCollectible;
 
-    public CardElementListe(String name,int cost,String image_url, String heroClass, String set, boolean isCollectible, String race){
+    public CardElementListe(String name,int cost,String image_url, HeroClass heroClass, String set, boolean isCollectible, String race){
         this.name = name;
         this.cost = cost;
         this.image_url = image_url;
@@ -42,7 +42,7 @@ public class CardElementListe implements Serializable {
         return image_url;
     }
 
-    public String getHeroClass() {
+    public HeroClass getHeroClass() {
         return heroClass;
     }
 

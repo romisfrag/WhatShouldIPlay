@@ -16,8 +16,8 @@ public class GeneralSort {
         ArrayList<CardElementListe> newList = new ArrayList<>();
 
         for (CardElementListe card : l) {
-            if (card.getHeroClass().toUpperCase().equals("NEUTRAL")
-                    || card.getHeroClass().toUpperCase().equals(c.toString().toUpperCase())
+            if (card.getHeroClass().equals(HeroClass.NEUTRAL)
+                    || card.getHeroClass().equals(c)
                     ) {
                 newList.add(card);
             }
@@ -37,7 +37,7 @@ public class GeneralSort {
             }*/
         }
 
-        return newList;
+        return l;
 
     }
 }
