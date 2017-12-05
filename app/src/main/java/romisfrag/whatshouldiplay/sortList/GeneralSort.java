@@ -1,5 +1,7 @@
 package romisfrag.whatshouldiplay.sortList;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Display.CardElementListe;
@@ -28,16 +30,31 @@ public class GeneralSort {
 
     static  public  ArrayList<CardElementListe> sortByMode (ArrayList<CardElementListe> l, Mode m) {
         ArrayList<CardElementListe> newList = new ArrayList<>();
-
-        for (CardElementListe card : l) {
-           /* if (card.toUpperCase().equals("NEUTRAL")
-                    || card.getHeroClass().toUpperCase().equals(c.toString().toUpperCase())
-                    ) {
-                newList.add(card);
-            }*/
+        ArrayList<String> authorizedSets = new ArrayList<>();
+        switch(m){
+            case WILD:
+                authorizedSets = Mode.getWildExtension();
+                break;
+            case STANDARD:
+                authorizedSets = Mode.getStandardExtension();
+                break;
+            case ARENA:
+                authorizedSets = Mode.getArenaExtension();
+                break;
         }
 
-        return l;
+        for (CardElementListe card : l) {
+           for(String s : authorizedSets){
+               if(s.equals(card.getSet())){
+                   newList.add(card);
+                   break;
+               }
+           }
+        }
+
+        Log.d("SORT", ""+newList.size());
+
+        return newList;
 
     }
 }

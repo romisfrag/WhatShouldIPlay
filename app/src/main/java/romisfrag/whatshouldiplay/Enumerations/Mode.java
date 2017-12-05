@@ -32,4 +32,8 @@ public enum Mode {
         extList.add ("Naxxramas");
         return extList;
     }
+
+    static public ArrayList<String> getArenaExtension(){
+        return getStandardExtension();
+    }
 }

@@ -25,12 +25,13 @@ public class GameInstance implements Serializable{
 
 
 
-    public GameInstance(ArrayList<CardElementListe> cardList, HeroClass hero, Mode mode){
+    public GameInstance(ArrayList<CardElementListe> list, HeroClass hero, Mode mode){
         game_mode = mode;
         game_class = hero;
         turn = 0;
-        // sorting list
-        this.cardList = GeneralSort.sortByClass(cardList, game_class);
+        // performing basic sorting
+        this.cardList = GeneralSort.sortByClass(list, game_class);
+        this.cardList = GeneralSort.sortByMode(this.cardList, game_mode);
     }
 
 
