@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WhatShouldIPlay.iml" filepath="$PROJECT_DIR$/WhatShouldIPlay.iml" />
-      <module fileurl="file://$PROJECT_DIR$/WhatShouldIPlay.iml" filepath="$PROJECT_DIR$/WhatShouldIPlay.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../../../../nfs/Etu3/3364533/Documents/M2/TPDEV/WhatShouldIPlay/app/app.iml" filepath="$PROJECT_DIR$/../../../../../../nfs/Etu3/3364533/Documents/M2/TPDEV/WhatShouldIPlay/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

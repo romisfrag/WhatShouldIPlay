@@ -25,7 +25,9 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class ParameterMenu extends AppCompatActivity {
 
-    GameInstance game_instance;
+    //GameInstance game_instance;
+    Mode mode = Mode.WILD;
+    HeroClass heroClass = HeroClass.DRUID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class ParameterMenu extends AppCompatActivity {
 
         final ApplicationCustom app = (ApplicationCustom)getApplication();
 
-        game_instance = new GameInstance(app.getAppCards());
+        //game_instance = new GameInstance(app.getAppCards(), );
 //        Toast.makeText(app, "test : " + game_instance.get_listeCard().size(), Toast.LENGTH_SHORT).show();
 
         final Button validate = (Button)findViewById(R.id.parameter_validate_button);
@@ -67,7 +69,7 @@ public class ParameterMenu extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     validate.setEnabled(true);
-                    game_instance.set_game_class(currentHero);
+                    heroClass = currentHero;
                     Toast.makeText(app, currentHero.toString(), LENGTH_SHORT).show();
                 }
             });
@@ -86,7 +88,7 @@ public class ParameterMenu extends AppCompatActivity {
             current.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    game_instance.set_game_mode(currentMode);
+                    mode = currentMode;
                 }
             });
 //            switch(m){
@@ -132,6 +134,7 @@ public class ParameterMenu extends AppCompatActivity {
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GameInstance game_instance = new GameInstance(app.getAppCards(), heroClass, mode);
                 Intent i = new Intent(ParameterMenu.this,DisplayCards.class);
                 i.putExtra("gameinstance", game_instance);
                 startActivity(i);

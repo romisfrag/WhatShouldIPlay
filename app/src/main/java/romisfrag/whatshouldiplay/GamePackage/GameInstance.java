@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import romisfrag.whatshouldiplay.Display.CardElementListe;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
+import romisfrag.whatshouldiplay.sortList.GeneralSort;
 
 ;
 //TODO :: need to complete this
@@ -24,11 +25,12 @@ public class GameInstance implements Serializable{
 
 
 
-    public GameInstance(ArrayList<CardElementListe> cardList){
-        game_mode = Mode.STANDARD;
-        game_class = HeroClass.DRUID;
+    public GameInstance(ArrayList<CardElementListe> cardList, HeroClass hero, Mode mode){
+        game_mode = mode;
+        game_class = hero;
         turn = 0;
-        this.cardList = cardList;
+        // sorting list
+        this.cardList = GeneralSort.sortByClass(cardList, game_class);
     }
 
 
@@ -47,16 +49,8 @@ public class GameInstance implements Serializable{
     }
 
     public ArrayList<CardElementListe> get_listeCard(){
-        ArrayList<CardElementListe> newList = new ArrayList<>();
 
-        for (CardElementListe c : cardList) {
-            if (c.getHeroClass().toUpperCase().equals("NEUTRAL")
-                    || c.getHeroClass().toUpperCase().equals(game_class.toString().toUpperCase())) {
-                newList.add(c);
-            }
-        }
-
-        return newList;
+        return cardList;
     }
 
 

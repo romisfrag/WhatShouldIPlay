@@ -39,7 +39,7 @@ public class LoadingScreen extends AppCompatActivity implements UseRequester{
         if (storageManager.isFileHere(fileName)){
             String temp;
             temp = storageManager.readFile(fileName);
-            endingApp(temp);
+            loadEnding(temp);
         }
         else{
             requester.sendAllCards();
@@ -48,7 +48,7 @@ public class LoadingScreen extends AppCompatActivity implements UseRequester{
 
     }
 
-    private void endingApp(String res){
+    private void loadEnding (String res){
 
         ApplicationCustom app = (ApplicationCustom)getApplication();
         //parsing the json
@@ -71,6 +71,6 @@ public class LoadingScreen extends AppCompatActivity implements UseRequester{
         //store the result in a file
         storageManager.saveString(fileName,temp);
 
-        endingApp(temp);
+        loadEnding(temp);
     }
 }

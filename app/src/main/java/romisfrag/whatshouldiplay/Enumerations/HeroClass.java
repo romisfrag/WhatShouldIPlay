@@ -13,5 +13,5 @@ public enum HeroClass {
     ROGUE,
     SHAMAN,
     WARLOCK,
-    WARRIOR
+    WARRIOR,
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Display.CardElementListe;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
+import romisfrag.whatshouldiplay.Enumerations.Wild;
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
 
 /**
@@ -49,47 +50,43 @@ public class JsonTransformer {
         }
 //        Toast.makeText(context, "On est la poto", Toast.LENGTH_SHORT).show();
 
-        JSONArray tempArray = null;
+        ArrayList<JSONArray> tempArray = new ArrayList<>();
         JSONObject tempElem;
         String tempName;
         int tempCost;
-        String tempUrl, tempRace, tempClass;
+        String tempUrl, tempRace, tempClass, tempSet;
         boolean tempsIsCollectible;
 
         //Searching for all the card of standard extensions
-        for(StandardExtensions e : StandardExtensions.values()){
-            switch(e){
-                case Classic:
-                    try {
-                        tempArray = jsonObject.getJSONArray("Classic");
-                    } catch (JSONException e1) {
-                        Toast.makeText(context, "getCardsListStandard Can't get classic", Toast.LENGTH_SHORT).show();
-                    }
-                    break;
-                case WhispersOTOG:
-                    try {
-                        tempArray = jsonObject.getJSONArray("Knights of the Frozen Throne");
-                    } catch (JSONException e1) {
-                        Toast.makeText(context, "getCardsListStandard Can't get KOTH", Toast.LENGTH_SHORT).show();
-
-                    }
-                    break;
+        for(Wild e : Wild.values()){
+            try {
+                tempArray.add(jsonObject.getJSONArray(e.toString()));
+            } catch (JSONException e1) {
+                Toast.makeText(context, "error getting card: "+e.toString(), Toast.LENGTH_SHORT).show();
             }
+        }
 
-            for(int i = 0; i < tempArray.length();i++){
+        for (JSONArray json : tempArray) {
+            for (int i = 0; i < json.length(); i++) {
                 try {
-                    tempElem = tempArray.getJSONObject(i);
+                    tempElem = json.getJSONObject(i);
                     tempName = tempElem.getString("name");
-                    tempCost = tempElem.getInt("cost");
+                    try {
+                        tempCost = tempElem.getInt("cost");
+                        tempRace = tempElem.getString("race");
+                    } catch (JSONException e) {
+                        tempCost = 11;
+                        tempRace = "Sort";
+                    }
                     tempUrl = tempElem.getString("img");
                     tempClass = tempElem.getString("playerClass");
                     tempsIsCollectible = tempElem.getBoolean("collectible");
-                    tempRace = tempElem.getString("race");
-                    res.add(new CardElementListe(tempName,tempCost,tempUrl, tempClass, tempsIsCollectible, tempRace));
+                    tempSet = tempElem.getString("cardSet");
+                    res.add(new CardElementListe(tempName, tempCost, tempUrl, tempClass, tempSet, tempsIsCollectible, tempRace));
                 } catch (JSONException e1) {
                     tempName = "";
                     try {
-                        tempElem = tempArray.getJSONObject(i);
+                        tempElem = json.getJSONObject(i);
                         tempName = tempElem.getString("name");
                     } catch (JSONException e2) {
                         //Toast.makeText(context, "La fin de la fin", Toast.LENGTH_SHORT).show();
@@ -98,6 +95,7 @@ public class JsonTransformer {
                 }
             }
         }
+
         Toast.makeText(context, "finished getCardListStandard", Toast.LENGTH_SHORT).show();
         return res;
     }
