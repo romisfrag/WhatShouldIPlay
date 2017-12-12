@@ -13,6 +13,7 @@ import romisfrag.whatshouldiplay.Display.CustomButton;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
 import romisfrag.whatshouldiplay.R;
+import romisfrag.whatshouldiplay.sortList.Filters;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
@@ -106,7 +107,7 @@ public class ParameterMenu extends AppCompatActivity {
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GameInstance game_instance = new GameInstance(app.getAppCards(), heroClass, mode);
+                GameInstance game_instance = new GameInstance(app.getAppCards(), heroClass, mode,new Filters(heroClass,mode));
                 Intent i = new Intent(ParameterMenu.this,DisplayCards.class);
                 i.putExtra("gameinstance", game_instance);
                 startActivity(i);

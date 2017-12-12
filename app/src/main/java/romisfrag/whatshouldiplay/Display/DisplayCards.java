@@ -3,18 +3,27 @@ package romisfrag.whatshouldiplay.Display;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
 import romisfrag.whatshouldiplay.R;
+import romisfrag.whatshouldiplay.sortList.Filters;
 
 
 public class DisplayCards extends AppCompatActivity {
 
     GameInstance game_instance;
+    SlidingUpPanelLayout slidingUpPanelLayout;
+    Filters filters;
 
 
     @Override
@@ -23,19 +32,59 @@ public class DisplayCards extends AppCompatActivity {
         setContentView(R.layout.display_cards_layout);
 
         game_instance = (GameInstance) getIntent().getSerializableExtra("gameinstance");
-
-        /*final ArrayList<CardElementListe> listeOfCard = new ArrayList<CardElementListe>();
-        listeOfCard.add(new CardElementListe("lol", 1));
-        for (int i = 0; i < 50; i++) {
-            listeOfCard.add(new CardElementListe("lol", 1));
-        }*/
+        filters = new Filters(game_instance.get_game_class(),game_instance.get_game_mode());
 
 
+
+        //setting up the panel listeners
+        slidingUpPanelLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        slidingUpPanelLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+
+            }
+
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                switch(newState) {
+                    case EXPANDED:
+                        Toast.makeText(getApplicationContext(), "EXPANDED", Toast.LENGTH_SHORT).show();
+
+                        break;
+                    case COLLAPSED:
+                        Toast.makeText(getApplicationContext(), "COLLAPSED", Toast.LENGTH_SHORT).show();
+                        game_instance.performAdvancedSort(filters);
+                        displayListe(game_instance.get_listeCard());
+                        break;
+                    default:
+                }
+            }
+        });
+
+
+        /*----------------------------Hiden Panel-------------------------------*/
+        //Cost Listeners
+        Button left = (Button) findViewById(R.id.leftCost);
+        Button right = (Button) findViewById(R.id.rightCost);
+        final TextView costTexte = (TextView) findViewById(R.id.costTexte);
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filters.decrCost();
+                costTexte.setText(""+filters.getCost());
+            }
+        });
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filters.incrCost();
+                costTexte.setText(""+filters.getCost());
+            }
+        });
 
 
 
         //starting the request
-        // TODO :: use the good informations from gameInstance to load the card
         displayListe(game_instance.get_listeCard());
 
     }

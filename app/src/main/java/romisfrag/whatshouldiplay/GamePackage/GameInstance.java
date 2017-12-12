@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import romisfrag.whatshouldiplay.Display.CardElementListe;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
-import romisfrag.whatshouldiplay.sortList.GeneralSort;
+import romisfrag.whatshouldiplay.sortList.Filters;
+
 
 ;
 //TODO :: need to complete this
@@ -20,18 +21,19 @@ public class GameInstance implements Serializable{
     //Here are all the parameters that define a game
     private Mode game_mode;
     private HeroClass game_class;
-    private int turn;
     private ArrayList<CardElementListe> cardList;
+    private ArrayList<CardElementListe> cardListFilter;
 
 
 
-    public GameInstance(ArrayList<CardElementListe> list, HeroClass hero, Mode mode){
+
+    public GameInstance(ArrayList<CardElementListe> list, HeroClass hero, Mode mode,Filters filters){
         game_mode = mode;
         game_class = hero;
-        turn = 0;
+        cardList = list;
         // performing basic sorting
-        this.cardList = GeneralSort.sortByClass(list, game_class);
-        this.cardList = GeneralSort.sortByMode(this.cardList, game_mode);
+        this.cardList = filters.performGeneralSort(list);
+        this.cardListFilter = cardList;
     }
 
 
@@ -45,14 +47,17 @@ public class GameInstance implements Serializable{
         return game_class;
     }
 
-    public int get_turn(){
-        return turn;
-    }
-
     public ArrayList<CardElementListe> get_listeCard(){
 
-        return cardList;
+        return cardListFilter;
     }
+
+    public void performAdvancedSort(Filters filters){
+        cardListFilter = filters.performAdvancedSort(cardList);
+    }
+
+
+
 
 
     //setter
@@ -62,10 +67,6 @@ public class GameInstance implements Serializable{
 
     public void set_game_class(HeroClass c){
         game_class = c;
-    }
-
-    public void set_turn (int t){
-        turn = t;
     }
 
 
