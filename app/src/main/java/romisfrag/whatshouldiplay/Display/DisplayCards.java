@@ -9,10 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
-import romisfrag.whatshouldiplay.Interfaces.UseRequester;
-import romisfrag.whatshouldiplay.JsonTransformer;
 import romisfrag.whatshouldiplay.R;
-import romisfrag.whatshouldiplay.input_output.Requester;
 
 
 public class DisplayCards extends AppCompatActivity {
@@ -23,7 +20,7 @@ public class DisplayCards extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.display_card_layout);
+        setContentView(R.layout.display_cards_layout);
 
         game_instance = (GameInstance) getIntent().getSerializableExtra("gameinstance");
 
@@ -34,14 +31,12 @@ public class DisplayCards extends AppCompatActivity {
         }*/
 
 
-        final TextView t = (TextView) findViewById(R.id.test);
 
 
 
         //starting the request
         // TODO :: use the good informations from gameInstance to load the card
         displayListe(game_instance.get_listeCard());
-        t.setText("Loaded");
 
     }
 
@@ -55,6 +50,7 @@ public class DisplayCards extends AppCompatActivity {
         final CardElemAdapter elemAdapter =
                 new CardElemAdapter(this, R.layout.carte_elem_liste,listeOfCard,this);
         lView.setAdapter(elemAdapter);
+        elemAdapter.notifyDataSetChanged();
 
     }
 
