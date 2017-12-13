@@ -26,12 +26,14 @@ public class ImageLoader extends AsyncTask<Void, Void, Void> {
     Bitmap bitmap;
     GifDrawable drawable;
     boolean gif;
+    boolean success;
 
 
     public ImageLoader(DisplayCardElem obj,String img_url,boolean gif) {
         this.img_url = img_url;
         this.displayCardElem = obj;
         this.gif = gif;
+        this.success = true;
     }
 
     @Override
@@ -51,7 +53,7 @@ public class ImageLoader extends AsyncTask<Void, Void, Void> {
                 bitmap = BitmapFactory.decodeStream(input);
             }
         } catch (IOException e) {
-
+            success = false;
         }
         return null;
     }
@@ -60,11 +62,15 @@ public class ImageLoader extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void v) {
         super.onPostExecute(v);
-        if(gif){
-            displayCardElem.displayGif(drawable);
+        if(success) {
+            if (gif) {
+                displayCardElem.displayGif(drawable);
+            } else {
+                displayCardElem.displayImg(bitmap);
+            }
         }
-        else {
-            displayCardElem.displayImg(bitmap);
+        else{
+            displayCardElem.callImageLoader();
         }
     }
 }

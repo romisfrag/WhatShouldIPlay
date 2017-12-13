@@ -22,13 +22,15 @@ public class DisplayCardElem extends AppCompatActivity {
 
     GameInstance game_instance;
     CardElementListe card;
-
+    int nbTry;
+    ApplicationCustom app;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_card_elem_layout);
 
-        final ApplicationCustom app = (ApplicationCustom)getApplication();
+        app = (ApplicationCustom)getApplication();
+        nbTry = 5;
 
         game_instance = (GameInstance) getIntent().getSerializableExtra("gameinstance");
         card = (CardElementListe) getIntent().getSerializableExtra("card");
@@ -41,14 +43,7 @@ public class DisplayCardElem extends AppCompatActivity {
         t.setText(card.getName());
 
         // call to asynchronous task
-        if(app.getGoldMode()){
-            Toast.makeText(app, "gold" + card.getGold_url(), Toast.LENGTH_SHORT).show();
-            new ImageLoader(this,card.getGold_url(),true ).execute();
-        }
-        else {
-            Toast.makeText(app, "pasglod", Toast.LENGTH_SHORT).show();
-            new ImageLoader(this,card.get_imageUrl(),false).execute();
-        }
+        callImageLoader();
     }
 
     public void displayImg(Bitmap bitmap){
@@ -62,6 +57,21 @@ public class DisplayCardElem extends AppCompatActivity {
         img_gold.setImageDrawable(is);
     }
 
+    public void callImageLoader(){
+        if(nbTry >= 0) {
+            nbTry--;
+            if (app.getGoldMode()) {
+                Toast.makeText(app, "gold" + card.getGold_url(), Toast.LENGTH_SHORT).show();
+                new ImageLoader(this, card.getGold_url(), true).execute();
+            } else {
+                Toast.makeText(app, "pasglod", Toast.LENGTH_SHORT).show();
+                new ImageLoader(this, card.get_imageUrl(), false).execute();
+            }
+        }
+        else{
+            Toast.makeText(app, "All try done but can't load image", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
 }
