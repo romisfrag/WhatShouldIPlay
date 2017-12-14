@@ -8,10 +8,13 @@ import romisfrag.whatshouldiplay.Enumerations.Mode;
 
 import static romisfrag.whatshouldiplay.Enumerations.Mode.WILD;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByCost;
+import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByRace;
 import static romisfrag.whatshouldiplay.sortList.GeneralSort.sortByClass;
 import static romisfrag.whatshouldiplay.sortList.GeneralSort.sortByMode;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
+import romisfrag.whatshouldiplay.Enumerations.Race;
+
 /**
  * Created by 3364533 on 12/12/17.
  */
@@ -21,6 +24,7 @@ public class Filters {
     private HeroClass heroClass;
     private Mode mode;
     private int cost;
+    private Race race;
 
 
     public Filters(HeroClass h,Mode m){
@@ -30,6 +34,8 @@ public class Filters {
         cost = -1;
     }
 
+
+    //sorting methods
     public ArrayList<CardElementListe> performGeneralSort(ArrayList<CardElementListe> l){
         ArrayList<CardElementListe> ret = l;
 
@@ -43,10 +49,13 @@ public class Filters {
         ArrayList<CardElementListe> ret = l;
         if(cost > -1) {
             ret = sortByCost(ret, cost);
+            ret = sortByRace(ret,race);
         }
 
         return ret;
     }
+
+
 
     //Cost functions
     public void incrCost(){
@@ -61,10 +70,20 @@ public class Filters {
             cost = 0;
         }
     }
+
+
+    //getter setters
     public int getCost(){
         return cost;
     }
 
+    public void setRace(Race r){
+        this.race = r;
+    }
+
+    public Race getRace(){
+        return race;
+    }
 
 
 }

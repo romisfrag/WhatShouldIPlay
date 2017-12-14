@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -89,10 +90,22 @@ public class DisplayCards extends AppCompatActivity {
 
         //Race spinner
         Spinner spinner = (Spinner) findViewById(R.id.race_spinner);
-        ArrayList<String> liste_spinner = ArrayListFromEnum(Race.values());
+        final ArrayList<String> liste_spinner = ArrayListFromEnum(Race.values());
         ArrayAdapter<String> spinner_adapter = new ArrayAdapter(getApplicationContext(),
                 android.R.layout.simple_spinner_item, liste_spinner);
         spinner.setAdapter(spinner_adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Race r = Race.valueOf(liste_spinner.get(position));
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         //starting the request

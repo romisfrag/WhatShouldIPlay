@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Display.CardElementListe;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
+import romisfrag.whatshouldiplay.Enumerations.Race;
 
 /**
  * Created by 3364533 on 12/12/17.
@@ -28,6 +29,17 @@ public class AdvancedSort {
             }
         }
         return newList;
+    }
+
+    static public ArrayList<CardElementListe> sortByRace(ArrayList<CardElementListe> l, Race r){
+        ArrayList<CardElementListe> res = new ArrayList<>();
+        //TODO : need to consider only minions (make a sort apart) because everyOne has a Race
+        for(CardElementListe card : l){
+            if(card.getRace().equals(r)){
+                res.add(card);
+            }
+        }
+        return res;
     }
 
 

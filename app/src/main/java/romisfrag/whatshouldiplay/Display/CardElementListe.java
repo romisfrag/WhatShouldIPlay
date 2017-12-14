@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
+import romisfrag.whatshouldiplay.Enumerations.Race;
 
 /**
  * Created by delgado on 16/10/17.
@@ -13,13 +14,14 @@ public class CardElementListe implements Serializable {
 
     String name;
     int cost;
-    String image_url, race;
+    String image_url;
     String gold_url;
+    Race race;
     HeroClass heroClass;
     String set;
     boolean isCollectible;
 
-    public CardElementListe(String name,int cost,String image_url, HeroClass heroClass, String set, boolean isCollectible, String race,String gold){
+    public CardElementListe(String name,int cost,String image_url, HeroClass heroClass, String set, boolean isCollectible, Race race,String gold){
         this.name = name;
         this.cost = cost;
         this.image_url = image_url;
@@ -52,7 +54,7 @@ public class CardElementListe implements Serializable {
         return set;
     }
 
-    public String getRace() {
+    public Race getRace() {
         return race;
     }
 

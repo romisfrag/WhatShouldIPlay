@@ -12,12 +12,11 @@ import java.util.ArrayList;
 import romisfrag.whatshouldiplay.Display.CardElementListe;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
+import romisfrag.whatshouldiplay.Enumerations.Race;
 
 /**
  * Created by delgado on 16/10/17.
  */
-
-enum StandardExtensions {Classic, WhispersOTOG}
 
 
 public class JsonTransformer {
@@ -53,7 +52,8 @@ public class JsonTransformer {
         JSONObject tempElem;
         String tempName;
         int tempCost;
-        String tempUrl, tempRace, tempClass, tempSet,tempGold;
+        String tempUrl, tempClass, tempSet,tempGold;
+        Race tempRace;
         boolean tempsIsCollectible;
 
         //Searching for all the card of standard extensions
@@ -83,10 +83,10 @@ public class JsonTransformer {
                     }
 
                     try {
-                        tempRace = tempElem.getString("race");
+                        tempRace = Race.valueOf(tempElem.getString("race"));
 
                     } catch (JSONException e) {
-                        tempRace = "Sort";
+                        tempRace = Race.PIRATE;
                     }
 
                     tempClass = tempElem.getString("playerClass");
