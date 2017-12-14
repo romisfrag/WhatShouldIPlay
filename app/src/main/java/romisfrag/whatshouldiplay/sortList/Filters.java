@@ -49,7 +49,9 @@ public class Filters {
         ArrayList<CardElementListe> ret = l;
         if(cost > -1) {
             ret = sortByCost(ret, cost);
-            ret = sortByRace(ret,race);
+        }
+        if(race.compareTo(Race.NORACE) != 0) {
+            ret = sortByRace(ret, race);
         }
 
         return ret;

@@ -42,10 +42,10 @@ public class AdvancedSort {
     }
 
     static public ArrayList<CardElementListe> sortByRace(ArrayList<CardElementListe> l, Race r){
-        ArrayList<CardElementListe> res = sortByType(l,true);
-        //TODO : need to consider only minions (make a sort apart) because everyOne has a Race
-        for(CardElementListe card : l){
-            if(card.getRace().equals(r)){
+        ArrayList<CardElementListe> withoutSpell = sortByType(l,true);
+        ArrayList<CardElementListe> res = new ArrayList<>();
+        for(CardElementListe card : withoutSpell){
+            if(card.getRace().compareTo(r) == 0){
                 res.add(card);
             }
         }

@@ -8,7 +8,7 @@ public enum Race {
     NORACE, MURLOC, DEMON, BEAST, TOTEM, PIRATE, DRAGON;
 
 
-    public static Race raceFromString(String s) throws Exception {
+    public static Race raceFromString(String s) {
         String str = s.toUpperCase();
 
         if(str.equals("MURLOC")){
@@ -29,7 +29,7 @@ public enum Race {
         if(str.compareTo("DRAGON") == 0){
             return DRAGON;
         }
-        throw new Exception();
+        return NORACE;
     }
 
 }

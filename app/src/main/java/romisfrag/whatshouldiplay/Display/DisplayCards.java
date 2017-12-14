@@ -23,6 +23,7 @@ import romisfrag.whatshouldiplay.R;
 import romisfrag.whatshouldiplay.sortList.Filters;
 
 import static romisfrag.whatshouldiplay.Enumerations.EnumerationTools.ArrayListFromEnum;
+import static romisfrag.whatshouldiplay.Enumerations.Race.raceFromString;
 
 
 public class DisplayCards extends AppCompatActivity {
@@ -98,8 +99,8 @@ public class DisplayCards extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Race r = Race.valueOf(liste_spinner.get(position));
-
+                Race r = raceFromString(liste_spinner.get(position));
+                filters.setRace(r);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
