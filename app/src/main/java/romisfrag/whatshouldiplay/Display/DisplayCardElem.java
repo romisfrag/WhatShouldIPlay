@@ -39,12 +39,16 @@ public class DisplayCardElem extends AppCompatActivity {
         TextView t = (TextView)findViewById(R.id.cardTitle);
         ImageView img = (ImageView)findViewById(R.id.card_image_view);
         GifImageView img_gold = (GifImageView)findViewById(R.id.card_gif_view);
+        //useless
         TextView raceText = (TextView)findViewById(R.id.card_race);
+        TextView attackText = (TextView)findViewById(R.id.card_attack);
+        TextView healthText = (TextView)findViewById(R.id.card_health);
 
         t.setText(card.getName());
 
         raceText.setText(card.getRace().toString());
-
+        attackText.setText(""+card.getAttack());
+        healthText.setText(""+card.getHealth());
         // call to asynchronous task
         callImageLoader();
     }

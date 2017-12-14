@@ -60,6 +60,7 @@ public class JsonTransformer {
         String tempRaceStr;
         boolean tempsIsCollectible;
         boolean tempMinion;
+        int tempAttack, tempHealth;
 
         //Searching for all the card of standard extensions
         for(String e : Mode.getWildExtension()){
@@ -93,7 +94,7 @@ public class JsonTransformer {
                         else{
                             tempMinion = false;
                         }
-                    } catch (Exception e){
+                    } catch (JSONException e){
                         tempMinion = false;
                     }
 
@@ -103,13 +104,22 @@ public class JsonTransformer {
                     } catch (Exception e) {
                         tempRace = Race.NORACE;
                     }
+                    //getting statistics
+                    try{
+                        tempAttack = tempElem.getInt("attack");
+                        tempHealth = tempElem.getInt("health");
+                    } catch (JSONException e){
+                        tempAttack = 0;
+                        tempHealth = 0;
+                    }
 
                     tempClass = tempElem.getString("playerClass");
                     tempsIsCollectible = tempElem.getBoolean("collectible");
                     tempSet = tempElem.getString("cardSet");
                     res.add(new CardElementListe(tempName, tempCost, tempUrl,
                             HeroClass.stringToHeroClass(tempClass),
-                            tempSet, tempsIsCollectible, tempRace,tempGold,tempMinion));
+                            tempSet, tempsIsCollectible, tempRace,tempGold,tempMinion,
+                            tempAttack,tempHealth));
                 } catch (JSONException e1) {
                     tempName = "";
                     try {

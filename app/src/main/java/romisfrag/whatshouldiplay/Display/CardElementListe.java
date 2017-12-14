@@ -12,6 +12,7 @@ import romisfrag.whatshouldiplay.Enumerations.Race;
 
 public class CardElementListe implements Serializable {
 
+    //Meta informations
     String name;
     int cost;
     String image_url;
@@ -22,9 +23,14 @@ public class CardElementListe implements Serializable {
     String set;
     boolean isCollectible;
 
+    //statistics
+    int attack;
+    int health;
+
+
     public CardElementListe(String name,int cost,String image_url, HeroClass heroClass,
                             String set, boolean isCollectible, Race race,String gold,
-                            boolean minion){
+                            boolean minion,int attack, int health){
         this.name = name;
         this.cost = cost;
         this.image_url = image_url;
@@ -34,6 +40,8 @@ public class CardElementListe implements Serializable {
         this.isCollectible = isCollectible;
         this.race = race;
         this.minion = minion;
+        this.attack = attack;
+        this.health = health;
     }
 
 
@@ -69,5 +77,8 @@ public class CardElementListe implements Serializable {
     public boolean isCollectible() {
         return isCollectible;
     }
+
+    public int getAttack(){ return attack; }
+    public int getHealth(){ return health; }
 
 }
