@@ -16,12 +16,15 @@ public class CardElementListe implements Serializable {
     int cost;
     String image_url;
     String gold_url;
+    boolean minion;
     Race race;
     HeroClass heroClass;
     String set;
     boolean isCollectible;
 
-    public CardElementListe(String name,int cost,String image_url, HeroClass heroClass, String set, boolean isCollectible, Race race,String gold){
+    public CardElementListe(String name,int cost,String image_url, HeroClass heroClass,
+                            String set, boolean isCollectible, Race race,String gold,
+                            boolean minion){
         this.name = name;
         this.cost = cost;
         this.image_url = image_url;
@@ -30,6 +33,7 @@ public class CardElementListe implements Serializable {
         this.gold_url = gold;
         this.isCollectible = isCollectible;
         this.race = race;
+        this.minion = minion;
     }
 
 
@@ -59,6 +63,8 @@ public class CardElementListe implements Serializable {
     }
 
     public String getGold_url() {return gold_url;}
+
+    public boolean getMinion(){return minion; }
 
     public boolean isCollectible() {
         return isCollectible;

@@ -22,4 +22,10 @@
         android:id="@+id/card_gif_view"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_race"
+        />
+
 </LinearLayout>

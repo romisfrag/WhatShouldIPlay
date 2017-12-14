@@ -31,8 +31,18 @@ public class AdvancedSort {
         return newList;
     }
 
-    static public ArrayList<CardElementListe> sortByRace(ArrayList<CardElementListe> l, Race r){
+    static public ArrayList<CardElementListe> sortByType(ArrayList<CardElementListe> l, boolean minion) {
         ArrayList<CardElementListe> res = new ArrayList<>();
+        for(CardElementListe card : l){
+            if(minion == card.getMinion()){
+                res.add(card);
+            }
+        }
+        return res;
+    }
+
+    static public ArrayList<CardElementListe> sortByRace(ArrayList<CardElementListe> l, Race r){
+        ArrayList<CardElementListe> res = sortByType(l,true);
         //TODO : need to consider only minions (make a sort apart) because everyOne has a Race
         for(CardElementListe card : l){
             if(card.getRace().equals(r)){

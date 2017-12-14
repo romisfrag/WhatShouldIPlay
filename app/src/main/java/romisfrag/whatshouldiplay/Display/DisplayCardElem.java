@@ -39,8 +39,11 @@ public class DisplayCardElem extends AppCompatActivity {
         TextView t = (TextView)findViewById(R.id.cardTitle);
         ImageView img = (ImageView)findViewById(R.id.card_image_view);
         GifImageView img_gold = (GifImageView)findViewById(R.id.card_gif_view);
+        TextView raceText = (TextView)findViewById(R.id.card_race);
 
         t.setText(card.getName());
+
+        raceText.setText(card.getRace().toString());
 
         // call to asynchronous task
         callImageLoader();

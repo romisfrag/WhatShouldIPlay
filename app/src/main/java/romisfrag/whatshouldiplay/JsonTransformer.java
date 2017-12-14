@@ -1,6 +1,7 @@
 package romisfrag.whatshouldiplay;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -13,6 +14,8 @@ import romisfrag.whatshouldiplay.Display.CardElementListe;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
 import romisfrag.whatshouldiplay.Enumerations.Race;
+
+import static romisfrag.whatshouldiplay.Enumerations.Race.raceFromString;
 
 /**
  * Created by delgado on 16/10/17.
@@ -54,7 +57,9 @@ public class JsonTransformer {
         int tempCost;
         String tempUrl, tempClass, tempSet,tempGold;
         Race tempRace;
+        String tempRaceStr;
         boolean tempsIsCollectible;
+        boolean tempMinion;
 
         //Searching for all the card of standard extensions
         for(String e : Mode.getWildExtension()){
@@ -81,19 +86,30 @@ public class JsonTransformer {
                     } catch (JSONException e){
                         tempCost = 11;
                     }
+                    try{
+                        if(tempElem.getString("type").equals("Minion")){
+                            tempMinion = true;
+                        }
+                        else{
+                            tempMinion = false;
+                        }
+                    } catch (Exception e){
+                        tempMinion = false;
+                    }
 
                     try {
-                        tempRace = Race.valueOf(tempElem.getString("race"));
-
-                    } catch (JSONException e) {
-                        tempRace = Race.PIRATE;
+                        tempRaceStr = tempElem.getString("race");
+                        tempRace = raceFromString(tempRaceStr);
+                    } catch (Exception e) {
+                        tempRace = Race.NORACE;
                     }
 
                     tempClass = tempElem.getString("playerClass");
                     tempsIsCollectible = tempElem.getBoolean("collectible");
                     tempSet = tempElem.getString("cardSet");
                     res.add(new CardElementListe(tempName, tempCost, tempUrl,
-                            HeroClass.stringToHeroClass(tempClass), tempSet, tempsIsCollectible, tempRace,tempGold));
+                            HeroClass.stringToHeroClass(tempClass),
+                            tempSet, tempsIsCollectible, tempRace,tempGold,tempMinion));
                 } catch (JSONException e1) {
                     tempName = "";
                     try {
