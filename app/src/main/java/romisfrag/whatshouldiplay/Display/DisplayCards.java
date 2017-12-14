@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,9 +16,12 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
 
+import romisfrag.whatshouldiplay.Enumerations.Race;
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
 import romisfrag.whatshouldiplay.R;
 import romisfrag.whatshouldiplay.sortList.Filters;
+
+import static romisfrag.whatshouldiplay.Enumerations.EnumerationTools.ArrayListFromEnum;
 
 
 public class DisplayCards extends AppCompatActivity {
@@ -82,6 +87,12 @@ public class DisplayCards extends AppCompatActivity {
             }
         });
 
+        //Race spinner
+        Spinner spinner = (Spinner) findViewById(R.id.race_spinner);
+        ArrayList<String> liste_spinner = ArrayListFromEnum(Race.values());
+        ArrayAdapter<String> spinner_adapter = new ArrayAdapter(getApplicationContext(),
+                android.R.layout.simple_spinner_item, liste_spinner);
+        spinner.setAdapter(spinner_adapter);
 
 
         //starting the request
