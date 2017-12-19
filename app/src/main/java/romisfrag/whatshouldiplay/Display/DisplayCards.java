@@ -18,12 +18,14 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Enumerations.Race;
+import romisfrag.whatshouldiplay.Enumerations.Ranking;
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
 import romisfrag.whatshouldiplay.R;
 import romisfrag.whatshouldiplay.sortList.Filters;
 
 import static romisfrag.whatshouldiplay.Enumerations.EnumerationTools.ArrayListFromEnum;
 import static romisfrag.whatshouldiplay.Enumerations.Race.raceFromString;
+import static romisfrag.whatshouldiplay.sortList.RankingSort.rankBy;
 
 
 public class DisplayCards extends AppCompatActivity {
@@ -31,6 +33,8 @@ public class DisplayCards extends AppCompatActivity {
     GameInstance game_instance;
     SlidingUpPanelLayout slidingUpPanelLayout;
     Filters filters;
+    CardElemAdapter elemAdapter;
+
 
 
     @Override
@@ -68,15 +72,25 @@ public class DisplayCards extends AppCompatActivity {
             }
         });
 
-        //Initializing the spinner in the head
+        //Initializing the spinner for sorting list
         Spinner sort_spinner = (Spinner) findViewById(R.id.sort_spinner);
-        ArrayList<String> lol = new ArrayList<>();
-        lol.add("lol");
-        lol.add("lol");
-        lol.add("lol");
-        ArrayAdapter<String> spinner_adapter_lol = new ArrayAdapter(getApplicationContext(),
-                android.R.layout.simple_spinner_item, lol);
-        sort_spinner.setAdapter(spinner_adapter_lol);
+        final ArrayList<String> ranking_liste = ArrayListFromEnum(Ranking.values());
+        ArrayAdapter<String> spinner_adapter_ranking = new ArrayAdapter(getApplicationContext(),
+                android.R.layout.simple_spinner_item, ranking_liste);
+        sort_spinner.setAdapter(spinner_adapter_ranking);
+        sort_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                rankBy(ranking_liste.get(position),game_instance.get_listeCard());
+                elemAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
         /*----------------------------Hiden Panel-------------------------------*/
         //Cost Listeners
@@ -130,7 +144,7 @@ public class DisplayCards extends AppCompatActivity {
     //affiche la liste fournie en argument
     public void displayListe(ArrayList<CardElementListe> listeOfCard) {
         final ListView lView = (ListView) findViewById(R.id.display_card_liste);
-        final CardElemAdapter elemAdapter =
+        elemAdapter =
                 new CardElemAdapter(this, R.layout.carte_elem_liste,listeOfCard,this);
         lView.setAdapter(elemAdapter);
         elemAdapter.notifyDataSetChanged();
