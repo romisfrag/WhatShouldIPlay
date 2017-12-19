@@ -20,6 +20,7 @@ public enum Mode {
         extList.add ("Mean Streets of Gadgetzan");
         extList.add ("Journey to Un'Goro");
         extList.add ("One Night in Karazhan");
+        extList.add("Kobolds & Catacombs");
         return extList;
     }
 
