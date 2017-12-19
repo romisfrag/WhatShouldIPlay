@@ -52,7 +52,7 @@ public class ParameterMenu extends AppCompatActivity {
 
         HeroClass choice = null;
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(WRAP_CONTENT,
-                (int)getResources().getDimension(R.dimen.linearOptionMenuHeight));;
+                WRAP_CONTENT/*(int)getResources().getDimension(R.dimen.linearOptionMenuHeight)*/);;
         LinearLayout newLine = null;
         int count = 0;
 
@@ -91,6 +91,7 @@ public class ParameterMenu extends AppCompatActivity {
             heroButton.setLayoutParams(param);
             heroButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
             heroButton.setBackgroundColor(0);
+            heroButton.setAdjustViewBounds(true);
 
             final ImageButton finalCurrent1 = heroButton;
             heroButton.setOnClickListener(new View.OnClickListener() {
