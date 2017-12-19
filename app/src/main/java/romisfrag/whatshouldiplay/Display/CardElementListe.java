@@ -22,6 +22,7 @@ public class CardElementListe implements Serializable {
     HeroClass heroClass;
     String set;
     boolean isCollectible;
+    String texte;
 
     //statistics
     int attack;
@@ -30,7 +31,7 @@ public class CardElementListe implements Serializable {
 
     public CardElementListe(String name,int cost,String image_url, HeroClass heroClass,
                             String set, boolean isCollectible, Race race,String gold,
-                            boolean minion,int attack, int health){
+                            boolean minion,int attack, int health,String texte){
         this.name = name;
         this.cost = cost;
         this.image_url = image_url;
@@ -42,6 +43,7 @@ public class CardElementListe implements Serializable {
         this.minion = minion;
         this.attack = attack;
         this.health = health;
+        this.texte = texte;
     }
 
 
@@ -80,5 +82,7 @@ public class CardElementListe implements Serializable {
 
     public int getAttack(){ return attack; }
     public int getHealth(){ return health; }
+
+    public String getTexte(){ return texte; }
 
 }
