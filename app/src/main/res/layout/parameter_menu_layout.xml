@@ -10,7 +10,117 @@
     android:gravity="center_horizontal"
     tools:context="romisfrag.whatshouldiplay.GamePackage.ParameterMenu">
 
+   <!-- <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/druid"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:background=""/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hunter"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:background=""/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mage"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:background="@null"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/druid"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background=""/>
+            <ImageButton<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/druid"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:background=""/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hunter"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:background=""/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mage"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:background="@null"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/druid"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background=""/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/hunter"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background=""/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mage"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background="@null"/>
+        </LinearLayout>
+    </LinearLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/hunter"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background=""/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mage"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background="@null"/>
+        </LinearLayout>
+    </LinearLayout> -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

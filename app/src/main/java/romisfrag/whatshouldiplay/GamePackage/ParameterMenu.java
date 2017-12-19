@@ -1,11 +1,18 @@
 package romisfrag.whatshouldiplay.GamePackage;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import romisfrag.whatshouldiplay.ApplicationCustom;
 import romisfrag.whatshouldiplay.Display.DisplayCards;
@@ -44,7 +51,8 @@ public class ParameterMenu extends AppCompatActivity {
         LinearLayout hero_class_layout = (LinearLayout) findViewById(R.id.class_id_layout);
 
         HeroClass choice = null;
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);;
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(WRAP_CONTENT,
+                (int)getResources().getDimension(R.dimen.linearOptionMenuHeight));;
         LinearLayout newLine = null;
         int count = 0;
 
@@ -58,18 +66,41 @@ public class ParameterMenu extends AppCompatActivity {
                 newLine.setOrientation(LinearLayout.HORIZONTAL);
                 hero_class_layout.addView(newLine);
             }
-            heroButton = new CustomButton(getApplicationContext(),
-                                     getResources().getDrawable(R.drawable.warrior),
-                                     getResources().getDrawable(R.drawable.warrior),
-                                     currentHero);
-            heroButton.setText(h.toString());
-            final Button finalCurrent1 = heroButton;
+
+                // get input stream
+                //InputStream ims1 = getAssets().open(h.toString().toLowerCase()+".png");
+                //InputStream ims2 = getAssets().open(h.toString().toLowerCase()+"_s.png");
+                // load image as Drawable
+                int res_img = getResources().getIdentifier(h.toString().toLowerCase(),"drawable",getPackageName());
+                int res_img_s = getResources().getIdentifier(h.toString().toLowerCase()+"_s",
+                        "drawable",getPackageName());
+
+                // set image to ImageView
+                //heroButton = new CustomButton(getApplicationContext(),d1,d2,
+                 //       currentHero);
+                heroButton = new CustomButton(getApplicationContext(),
+                        getResources().getDrawable(res_img),
+                        getResources().getDrawable(res_img_s),
+                        currentHero);
+
+
+            heroButton.setImageDrawable(heroButton.getImg());
+
+            LinearLayout.LayoutParams param =
+                    new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1);
+            heroButton.setLayoutParams(param);
+            heroButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            heroButton.setBackgroundColor(0);
+
+            final ImageButton finalCurrent1 = heroButton;
             heroButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    heroButton.setEnabled(true);
+                    //heroButton.setEnabled(true);
+                    heroButton.setImageDrawable(heroButton.getImg());
                     heroButton = (CustomButton) finalCurrent1;
-                    finalCurrent1.setEnabled(false);
+                    //finalCurrent1.setEnabled(false);
+                    finalCurrent1.setImageDrawable(((CustomButton) finalCurrent1).getSelectedImg());
                     heroSet = true;
                     validate.setEnabled(heroSet && modeSet);
                     heroClass = currentHero;
