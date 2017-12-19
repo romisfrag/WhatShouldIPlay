@@ -156,7 +156,8 @@ public class ParameterMenu extends AppCompatActivity {
         modeSet = false;
         heroSet = false;
         modeButton.setEnabled(true);
-        heroButton.setEnabled(true);
+        //heroButton.setEnabled(true);
+        heroButton.setImageDrawable(heroButton.getImg());
     }
 
 

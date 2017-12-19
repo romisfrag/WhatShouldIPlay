@@ -68,6 +68,15 @@ public class DisplayCards extends AppCompatActivity {
             }
         });
 
+        //Initializing the spinner in the head
+        Spinner sort_spinner = (Spinner) findViewById(R.id.sort_spinner);
+        ArrayList<String> lol = new ArrayList<>();
+        lol.add("lol");
+        lol.add("lol");
+        lol.add("lol");
+        ArrayAdapter<String> spinner_adapter_lol = new ArrayAdapter(getApplicationContext(),
+                android.R.layout.simple_spinner_item, lol);
+        sort_spinner.setAdapter(spinner_adapter_lol);
 
         /*----------------------------Hiden Panel-------------------------------*/
         //Cost Listeners
