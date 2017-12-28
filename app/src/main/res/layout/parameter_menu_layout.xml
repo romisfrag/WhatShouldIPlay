@@ -10,13 +10,14 @@
     android:gravity="center_horizontal"
     tools:context="romisfrag.whatshouldiplay.GamePackage.ParameterMenu"
     android:background="@drawable/background"
+    android:scaleType="centerCrop"
     >
 
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Choose your Hero"
+        android:layout_width="225dp"
+        android:layout_height="35dp"
+        android:background="@drawable/select_hero"
         android:gravity="center_horizontal"/>
 
     <LinearLayout
@@ -25,80 +26,12 @@
         android:orientation="vertical"
         android:id="@+id/class_id_layout"
         android:gravity="center_horizontal">
-
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Druid"-->
-            <!--android:id="@+id/druid_button"-->
-            <!--/>-->
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Hunter"-->
-            <!--android:id="@+id/hunter_button"-->
-            <!--android:layout_toRightOf="@+id/druid_button"/>-->
-
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Mage"-->
-            <!--android:id="@+id/mage_button"-->
-            <!--android:layout_toRightOf="@+id/hunter_button"/>-->
-
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Paladin"-->
-            <!--android:id="@+id/paladin_button"-->
-            <!--android:layout_below="@+id/druid_button"/>-->
-
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Priest"-->
-            <!--android:id="@+id/priest_button"-->
-            <!--android:layout_toRightOf="@id/paladin_button"-->
-            <!--android:layout_below="@id/druid_button"/>-->
-
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Rogue"-->
-            <!--android:id="@+id/rogue_button"-->
-            <!--android:layout_toRightOf="@+id/priest_button"-->
-            <!--android:layout_below="@id/druid_button"-->
-            <!--/>-->
-
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Shaman"-->
-            <!--android:id="@+id/shaman_button"-->
-            <!--android:layout_below="@id/paladin_button"/>-->
-
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Warlock"-->
-            <!--android:id="@+id/warlock_button"-->
-            <!--android:layout_below="@id/paladin_button"-->
-            <!--android:layout_toRightOf="@id/shaman_button"/>-->
-
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Warrior"-->
-            <!--android:id="@+id/warrior_button"-->
-            <!--android:layout_toRightOf="@id/warlock_button"-->
-            <!--android:layout_below="@id/paladin_button"/>-->
-
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose your game mode"/>
+        android:layout_width="225dp"
+        android:layout_height="35dp"
+        android:background="@drawable/select_mode"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -109,9 +42,9 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Validate"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/start_button"
         android:id="@+id/parameter_validate_button"
         />
 
