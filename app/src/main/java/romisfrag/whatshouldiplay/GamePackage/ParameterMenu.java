@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -33,7 +34,7 @@ public class ParameterMenu extends AppCompatActivity {
     boolean modeSet = false;
 
     CustomButton heroButton = null;
-    Button modeButton = null;
+    CustomButton modeButton = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class ParameterMenu extends AppCompatActivity {
 
         HeroClass choice = null;
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(WRAP_CONTENT,
-                WRAP_CONTENT/*(int)getResources().getDimension(R.dimen.linearOptionMenuHeight)*/);;
+                WRAP_CONTENT);
         LinearLayout newLine = null;
         int count = 0;
 
@@ -67,27 +68,20 @@ public class ParameterMenu extends AppCompatActivity {
                 hero_class_layout.addView(newLine);
             }
 
-                // get input stream
-                //InputStream ims1 = getAssets().open(h.toString().toLowerCase()+".png");
-                //InputStream ims2 = getAssets().open(h.toString().toLowerCase()+"_s.png");
-                // load image as Drawable
-                int res_img = getResources().getIdentifier(h.toString().toLowerCase(),"drawable",getPackageName());
-                int res_img_s = getResources().getIdentifier(h.toString().toLowerCase()+"_s",
-                        "drawable",getPackageName());
+            int res_img = getResources().getIdentifier(h.toString().toLowerCase(),"drawable",getPackageName());
+            int res_img_s = getResources().getIdentifier(h.toString().toLowerCase()+"_s",
+                    "drawable",getPackageName());
 
-                // set image to ImageView
-                //heroButton = new CustomButton(getApplicationContext(),d1,d2,
-                 //       currentHero);
-                heroButton = new CustomButton(getApplicationContext(),
-                        getResources().getDrawable(res_img),
-                        getResources().getDrawable(res_img_s),
-                        currentHero);
+            heroButton = new CustomButton(getApplicationContext(),
+                    getResources().getDrawable(res_img),
+                    getResources().getDrawable(res_img_s),
+                    currentHero);
 
 
             heroButton.setImageDrawable(heroButton.getImg());
 
             LinearLayout.LayoutParams param =
-                    new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1);
+                    new LinearLayout.LayoutParams(300, ViewGroup.LayoutParams.WRAP_CONTENT,1);
             heroButton.setLayoutParams(param);
             heroButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
             heroButton.setBackgroundColor(0);
@@ -97,13 +91,18 @@ public class ParameterMenu extends AppCompatActivity {
             heroButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //heroButton.setEnabled(true);
                     heroButton.setImageDrawable(heroButton.getImg());
                     heroButton = (CustomButton) finalCurrent1;
-                    //finalCurrent1.setEnabled(false);
                     finalCurrent1.setImageDrawable(((CustomButton) finalCurrent1).getSelectedImg());
                     heroSet = true;
-                    validate.setEnabled(heroSet && modeSet);
+                    if (heroSet && modeSet) {
+                        validate.setEnabled(true);
+                        validate.setBackgroundDrawable(getResources().getDrawable(R.drawable.start_button_ready));
+                    }
+                    else {
+                        validate.setEnabled(false);
+                        validate.setBackgroundDrawable(getResources().getDrawable(R.drawable.start_button));
+                    }
                     heroClass = currentHero;
                 }
             });
@@ -116,23 +115,45 @@ public class ParameterMenu extends AppCompatActivity {
         for(Mode m : Mode.values()){
             final Mode currentMode = m;
             //instanciation before looping
-            modeButton = new Button(getApplicationContext());
-            lp = new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-            modeButton.setText(currentMode.toString());
-            final Button finalCurrent = modeButton;
+
+
+            int res_img = getResources().getIdentifier(m.toString().toLowerCase(),"drawable",getPackageName());
+            int res_img_s = getResources().getIdentifier(m.toString().toLowerCase()+"_s",
+                    "drawable",getPackageName());
+
+            modeButton = new CustomButton(getApplicationContext(),
+                    getResources().getDrawable(res_img),
+                    getResources().getDrawable(res_img_s),
+                    null);
+
+            modeButton.setImageDrawable(modeButton.getImg());
+
+            LinearLayout.LayoutParams param =
+                    new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1);
+            modeButton.setLayoutParams(param);
+            modeButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            modeButton.setBackgroundColor(0);
+            modeButton.setAdjustViewBounds(true);
+
+            final ImageButton finalCurrent = modeButton;
             modeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    modeButton.setEnabled(true);
-                    modeButton = finalCurrent;
-                    finalCurrent.setEnabled(false);
+                    modeButton.setImageDrawable(modeButton.getImg());
+                    modeButton = (CustomButton) finalCurrent;
+                    finalCurrent.setImageDrawable(((CustomButton) finalCurrent).getSelectedImg());
                     modeSet = true;
-                    validate.setEnabled(heroSet && modeSet);
+                    if (heroSet && modeSet) {
+                        validate.setEnabled(true);
+                        validate.setBackgroundDrawable(getResources().getDrawable(R.drawable.start_button_ready));
+                    }
+                    else {
+                        validate.setEnabled(false);
+                        validate.setBackgroundDrawable(getResources().getDrawable(R.drawable.start_button));
+                    }
                     mode = currentMode;
                 }
             });
-            modeButton.setLayoutParams(lp);
-            //adding the button to the layout
             gameMode_l.addView(modeButton);
         }
 
@@ -155,9 +176,9 @@ public class ParameterMenu extends AppCompatActivity {
         validate.setEnabled(false);
         modeSet = false;
         heroSet = false;
-        modeButton.setEnabled(true);
-        //heroButton.setEnabled(true);
         heroButton.setImageDrawable(heroButton.getImg());
+        modeButton.setImageDrawable(modeButton.getImg());
+        validate.setBackgroundDrawable(getResources().getDrawable(R.drawable.start_button));
     }
 
 

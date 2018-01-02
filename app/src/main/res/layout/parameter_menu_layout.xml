@@ -48,8 +48,4 @@
         android:id="@+id/parameter_validate_button"
         />
 
-
-
-
-
 </LinearLayout>
