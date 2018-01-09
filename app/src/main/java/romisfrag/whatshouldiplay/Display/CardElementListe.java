@@ -1,8 +1,10 @@
 package romisfrag.whatshouldiplay.Display;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
+import romisfrag.whatshouldiplay.Enumerations.Mechanics;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
 import romisfrag.whatshouldiplay.Enumerations.Race;
 
@@ -23,6 +25,7 @@ public class CardElementListe implements Serializable {
     String set;
     boolean isCollectible;
     String texte;
+    ArrayList<Mechanics> mechanics;
 
     //statistics
     int attack;
@@ -31,7 +34,8 @@ public class CardElementListe implements Serializable {
 
     public CardElementListe(String name,int cost,String image_url, HeroClass heroClass,
                             String set, boolean isCollectible, Race race,String gold,
-                            boolean minion,int attack, int health,String texte){
+                            boolean minion,int attack, int health,String texte,
+                            ArrayList<Mechanics> mechanics){
         this.name = name;
         this.cost = cost;
         this.image_url = image_url;
@@ -44,6 +48,7 @@ public class CardElementListe implements Serializable {
         this.attack = attack;
         this.health = health;
         this.texte = texte;
+        this.mechanics = mechanics;
     }
 
 
@@ -84,5 +89,10 @@ public class CardElementListe implements Serializable {
     public int getHealth(){ return health; }
 
     public String getTexte(){ return texte; }
+
+    public ArrayList<Mechanics> getMechanics(){
+        return mechanics;
+    }
+
 
 }

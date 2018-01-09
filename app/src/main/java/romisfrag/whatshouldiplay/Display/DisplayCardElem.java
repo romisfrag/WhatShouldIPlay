@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,10 +12,12 @@ import android.widget.Toast;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 import romisfrag.whatshouldiplay.ApplicationCustom;
+import romisfrag.whatshouldiplay.Enumerations.Mechanics;
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
 import romisfrag.whatshouldiplay.R;
 
@@ -45,6 +48,11 @@ public class DisplayCardElem extends AppCompatActivity {
         TextView healthText = (TextView)findViewById(R.id.card_health);
         TextView flavorText = (TextView)findViewById(R.id.card_flavor);
 
+        ArrayList<Mechanics> tempMecha = card.getMechanics();
+        Toast.makeText(app, ""+tempMecha.size(), Toast.LENGTH_SHORT).show();
+        /*for(Mechanics m : tempMecha) {
+            Toast.makeText(app, ""+, Toast.LENGTH_SHORT).show();
+        }*/
 
         t.setText(card.getName());
 

@@ -12,9 +12,12 @@ import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Display.CardElementListe;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
+import romisfrag.whatshouldiplay.Enumerations.Mechanics;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
 import romisfrag.whatshouldiplay.Enumerations.Race;
 
+import static romisfrag.whatshouldiplay.Enumerations.Mechanics.TAUNT;
+import static romisfrag.whatshouldiplay.Enumerations.Mechanics.stringToMecha;
 import static romisfrag.whatshouldiplay.Enumerations.Race.raceFromString;
 
 /**
@@ -61,6 +64,7 @@ public class JsonTransformer {
         boolean tempsIsCollectible;
         boolean tempMinion;
         int tempAttack, tempHealth;
+        ArrayList<Mechanics> tempMechanics;
 
         //Searching for all the card of standard extensions
         for(String e : Mode.getWildExtension()){
@@ -118,6 +122,29 @@ public class JsonTransformer {
                     } catch (JSONException e){
                         tempTexte = "";
                     }
+                    //getting all the mechanics
+                    tempMechanics = new ArrayList<>();
+                    try{
+                        JSONArray mechaJ = tempElem.getJSONArray("mechanics");
+                        try {
+                            Log.d("lenght",""+mechaJ.length());
+                            for (int k = 0; k < mechaJ.length(); k++) {
+                                JSONObject obj = mechaJ.getJSONObject(k);
+                                try {
+                                    String mechaName = obj.getString("name");
+                                    tempMechanics.add(stringToMecha(mechaName));
+                                } catch (Exception e) {
+                                    Log.d("mecha", "get name dead");
+                                }
+                            }
+                        }catch(JSONException e){
+                            Log.d("mecha3", "get obj dead");
+                        }
+
+                    } catch (JSONException e){
+                        Log.d("mecha2","get meca dead");
+                    }
+
 
                     tempClass = tempElem.getString("playerClass");
                     tempsIsCollectible = tempElem.getBoolean("collectible");
@@ -125,7 +152,7 @@ public class JsonTransformer {
                     res.add(new CardElementListe(tempName, tempCost, tempUrl,
                             HeroClass.stringToHeroClass(tempClass),
                             tempSet, tempsIsCollectible, tempRace,tempGold,tempMinion,
-                            tempAttack,tempHealth,tempTexte));
+                            tempAttack,tempHealth,tempTexte,tempMechanics));
                 } catch (JSONException e1) {
                     tempName = "";
                     try {
