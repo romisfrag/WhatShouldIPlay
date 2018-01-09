@@ -3,7 +3,6 @@ package romisfrag.whatshouldiplay.Display;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +20,7 @@ import java.util.ArrayList;
 import romisfrag.whatshouldiplay.Enumerations.Mechanics;
 import romisfrag.whatshouldiplay.Enumerations.Race;
 import romisfrag.whatshouldiplay.Enumerations.Ranking;
+import romisfrag.whatshouldiplay.Enumerations.EWorries;
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
 import romisfrag.whatshouldiplay.R;
 import romisfrag.whatshouldiplay.sortList.Filters;
@@ -118,7 +118,7 @@ public class DisplayCards extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.race_spinner);
         final ArrayList<String> liste_spinner = ArrayListFromEnum(Race.values());
         ArrayAdapter<String> spinner_adapter = new ArrayAdapter(getApplicationContext(),
-                android.R.layout.simple_spinner_item, liste_spinner);
+                android.R.layout.simple_list_item_1, liste_spinner);
         spinner.setAdapter(spinner_adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -144,6 +144,24 @@ public class DisplayCards extends AppCompatActivity {
                 filters.setListeMecha(selected);
             }
         });
+
+        //worries multi spinner
+        MultiSpinner worriesSpinner = (MultiSpinner) findViewById(R.id.worriesSpinner);
+        ArrayList<String> listeWorries = ArrayListFromEnum(EWorries.values());
+
+        Toast.makeText(this, "length :"+listeWorries.size(), Toast.LENGTH_SHORT).show();
+
+        ArrayAdapter<String> worriesAdapter =
+                new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,listeWorries);
+        worriesSpinner.setAdapter(worriesAdapter, false, new MultiSpinner.MultiSpinnerListener() {
+            @Override
+            public void onItemsSelected(boolean[] selected) {
+                filters.setListeWorries(selected);
+            }
+        });
+
+
+
 
         //starting the request
         displayListe(game_instance.get_listeCard());

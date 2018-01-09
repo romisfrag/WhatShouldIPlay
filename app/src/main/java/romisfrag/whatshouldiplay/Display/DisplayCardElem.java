@@ -1,17 +1,12 @@
 package romisfrag.whatshouldiplay.Display;
 
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import pl.droidsonroids.gif.GifDrawable;
@@ -59,7 +54,7 @@ public class DisplayCardElem extends AppCompatActivity {
         raceText.setText(card.getRace().toString());
         attackText.setText(""+card.getAttack());
         healthText.setText(""+card.getHealth());
-        flavorText.setText(""+card.getTexte());
+        flavorText.setText(""+card.getFlavor());
         // call to asynchronous task
         callImageLoader();
     }

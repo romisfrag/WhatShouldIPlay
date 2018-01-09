@@ -83,15 +83,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose the race"/>
             <Spinner
                 android:id="@+id/race_spinner"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose the Mechanics"
+                />
+
             <com.thomashaertel.widget.MultiSpinner
                 android:id="@+id/mechanicSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="What are worried about"/>
+
+            <com.thomashaertel.widget.MultiSpinner
+                android:id="@+id/worriesSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
         </LinearLayout>
 
 

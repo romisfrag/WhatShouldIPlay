@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.Enumerations.Mechanics;
-import romisfrag.whatshouldiplay.Enumerations.Mode;
 import romisfrag.whatshouldiplay.Enumerations.Race;
 
 /**
@@ -24,6 +23,7 @@ public class CardElementListe implements Serializable {
     HeroClass heroClass;
     String set;
     boolean isCollectible;
+    String flavor;
     String texte;
     ArrayList<Mechanics> mechanics;
 
@@ -34,8 +34,8 @@ public class CardElementListe implements Serializable {
 
     public CardElementListe(String name,int cost,String image_url, HeroClass heroClass,
                             String set, boolean isCollectible, Race race,String gold,
-                            boolean minion,int attack, int health,String texte,
-                            ArrayList<Mechanics> mechanics){
+                            boolean minion,int attack, int health,String flavor,
+                            ArrayList<Mechanics> mechanics,String texte){
         this.name = name;
         this.cost = cost;
         this.image_url = image_url;
@@ -47,8 +47,9 @@ public class CardElementListe implements Serializable {
         this.minion = minion;
         this.attack = attack;
         this.health = health;
-        this.texte = texte;
+        this.flavor = flavor;
         this.mechanics = mechanics;
+        this.texte = texte;
     }
 
 
@@ -88,7 +89,7 @@ public class CardElementListe implements Serializable {
     public int getAttack(){ return attack; }
     public int getHealth(){ return health; }
 
-    public String getTexte(){ return texte; }
+    public String getFlavor(){ return flavor; }
 
     public ArrayList<Mechanics> getMechanics(){
         return mechanics;
@@ -101,6 +102,10 @@ public class CardElementListe implements Serializable {
             }
         }
         return false;
+    }
+
+    public String getTexte(){
+        return texte;
     }
 
 

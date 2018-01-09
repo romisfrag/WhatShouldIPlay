@@ -5,7 +5,7 @@ package romisfrag.whatshouldiplay.Enumerations;
  */
 
 public enum Mechanics {
-    BATTLECRY,
+    Battlecry,
     DEATHRATTLE,
     CHARGE,
     TAUNT,
@@ -28,7 +28,7 @@ public enum Mechanics {
     public static Mechanics stringToMecha(String s){
         switch (s) {
             case "Battlecry":
-                return BATTLECRY;
+                return Battlecry;
             case "Deathrattle":
                 return DEATHRATTLE;
             case "Charge":

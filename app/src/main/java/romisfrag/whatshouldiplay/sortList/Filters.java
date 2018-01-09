@@ -7,15 +7,15 @@ import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.Enumerations.Mechanics;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
 
-import static romisfrag.whatshouldiplay.Enumerations.Mode.WILD;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByCost;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByMechanics;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByRace;
 import static romisfrag.whatshouldiplay.sortList.GeneralSort.sortByClass;
 import static romisfrag.whatshouldiplay.sortList.GeneralSort.sortByMode;
-import romisfrag.whatshouldiplay.Enumerations.HeroClass;
-import romisfrag.whatshouldiplay.Enumerations.Mode;
+import static romisfrag.whatshouldiplay.sortList.Worries.performWorriesSort;
+
 import romisfrag.whatshouldiplay.Enumerations.Race;
+import romisfrag.whatshouldiplay.Enumerations.EWorries;
 
 /**
  * Created by 3364533 on 12/12/17.
@@ -28,6 +28,7 @@ public class Filters {
     private int cost;
     private Race race;
     private boolean[] listeMecha;
+    private boolean[] listeWorries;
 
 
     public Filters(HeroClass h,Mode m){
@@ -39,6 +40,12 @@ public class Filters {
         for(int i = 0; i < listeMecha.length;i++){
             listeMecha[i] = false;
         }
+
+        listeWorries = new boolean[EWorries.values().length];
+        for(int i = 0; i < listeWorries.length;i++){
+            listeWorries[i] = false;
+        }
+
     }
 
 
@@ -69,7 +76,13 @@ public class Filters {
                 break;
             }
         }
-
+        //performing worries
+        for(int i = 0; i < listeWorries.length;i++){
+            if(listeWorries[i]){
+                ret = performWorriesSort(ret,listeWorries);
+                break;
+            }
+        }
 
         return ret;
     }
@@ -106,6 +119,10 @@ public class Filters {
 
     public void setListeMecha(boolean[] mechas){
         listeMecha = mechas;
+    }
+
+    public void setListeWorries(boolean[] worries){
+        listeWorries = worries;
     }
 
 }

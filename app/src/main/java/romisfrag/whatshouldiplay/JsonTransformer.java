@@ -58,7 +58,7 @@ public class JsonTransformer {
         JSONObject tempElem;
         String tempName;
         int tempCost;
-        String tempUrl, tempClass, tempSet,tempGold,tempTexte;
+        String tempUrl, tempClass, tempSet,tempGold,tempTexte, tempFlavor;
         Race tempRace;
         String tempRaceStr;
         boolean tempsIsCollectible;
@@ -116,12 +116,19 @@ public class JsonTransformer {
                         tempAttack = 0;
                         tempHealth = 0;
                     }
+                    //getting card flavor
+                    try{
+                        tempFlavor = tempElem.getString("flavor");
+                    } catch (JSONException e){
+                        tempFlavor = "";
+                    }
                     //getting card text
                     try{
-                        tempTexte = tempElem.getString("flavor");
+                        tempTexte = tempElem.getString("text");
                     } catch (JSONException e){
                         tempTexte = "";
                     }
+
                     //getting all the mechanics
                     tempMechanics = new ArrayList<>();
                     try{
@@ -152,7 +159,7 @@ public class JsonTransformer {
                     res.add(new CardElementListe(tempName, tempCost, tempUrl,
                             HeroClass.stringToHeroClass(tempClass),
                             tempSet, tempsIsCollectible, tempRace,tempGold,tempMinion,
-                            tempAttack,tempHealth,tempTexte,tempMechanics));
+                            tempAttack,tempHealth,tempFlavor,tempMechanics,tempTexte));
                 } catch (JSONException e1) {
                     tempName = "";
                     try {
