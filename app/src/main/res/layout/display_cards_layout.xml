@@ -81,10 +81,16 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <Spinner
                 android:id="@+id/race_spinner"
                 android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <com.thomashaertel.widget.MultiSpinner
+                android:id="@+id/mechanicSpinner"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 

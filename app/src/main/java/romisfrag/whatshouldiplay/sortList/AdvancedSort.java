@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Display.CardElementListe;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
+import romisfrag.whatshouldiplay.Enumerations.Mechanics;
 import romisfrag.whatshouldiplay.Enumerations.Race;
+
+import static romisfrag.whatshouldiplay.Enumerations.EnumerationTools.ArrayListFromEnum;
 
 /**
  * Created by 3364533 on 12/12/17.
@@ -46,6 +49,34 @@ public class AdvancedSort {
         ArrayList<CardElementListe> res = new ArrayList<>();
         for(CardElementListe card : withoutSpell){
             if(card.getRace().compareTo(r) == 0){
+                res.add(card);
+            }
+        }
+        return res;
+    }
+
+    static public ArrayList<CardElementListe> sortByMechanics(ArrayList<CardElementListe> lc,
+                                                              boolean[] lb){
+        ArrayList<CardElementListe> res = new ArrayList<>();
+        ArrayList<Mechanics> mechaToFind = new ArrayList<>();
+        Mechanics[] listeMechas = Mechanics.values();
+        for(int i = 0; i < lb.length; i++){
+            if(lb[i]){
+                mechaToFind.add(listeMechas[i]);
+            }
+        }
+        boolean canPute = false;
+        for(CardElementListe card : lc){
+            for(Mechanics m : mechaToFind){
+                if(card.hasMechanic(m)){
+                    canPute = true;
+                }else{
+                    canPute = false;
+                    break;
+                }
+
+            }
+            if(canPute){
                 res.add(card);
             }
         }

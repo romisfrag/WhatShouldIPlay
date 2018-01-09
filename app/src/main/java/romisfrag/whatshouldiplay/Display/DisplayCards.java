@@ -14,9 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.thomashaertel.widget.MultiSpinner;
 
 import java.util.ArrayList;
 
+import romisfrag.whatshouldiplay.Enumerations.Mechanics;
 import romisfrag.whatshouldiplay.Enumerations.Race;
 import romisfrag.whatshouldiplay.Enumerations.Ranking;
 import romisfrag.whatshouldiplay.GamePackage.GameInstance;
@@ -131,6 +133,17 @@ public class DisplayCards extends AppCompatActivity {
             }
         });
 
+        //mechanic multi spinner
+        MultiSpinner multiSpinner = (MultiSpinner) findViewById(R.id.mechanicSpinner);
+        ArrayList<String> listeMecha = ArrayListFromEnum(Mechanics.values());
+        ArrayAdapter<String> adapterMecha =
+                new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,listeMecha);
+        multiSpinner.setAdapter(adapterMecha, false, new MultiSpinner.MultiSpinnerListener() {
+            @Override
+            public void onItemsSelected(boolean[] selected) {
+                filters.setListeMecha(selected);
+            }
+        });
 
         //starting the request
         displayListe(game_instance.get_listeCard());

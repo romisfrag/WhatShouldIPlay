@@ -94,5 +94,14 @@ public class CardElementListe implements Serializable {
         return mechanics;
     }
 
+    public boolean hasMechanic(Mechanics m){
+        for(Mechanics mprime : mechanics){
+            if(m.equals(mprime)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }

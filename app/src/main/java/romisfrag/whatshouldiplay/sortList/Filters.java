@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Display.CardElementListe;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
+import romisfrag.whatshouldiplay.Enumerations.Mechanics;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
 
 import static romisfrag.whatshouldiplay.Enumerations.Mode.WILD;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByCost;
+import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByMechanics;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByRace;
 import static romisfrag.whatshouldiplay.sortList.GeneralSort.sortByClass;
 import static romisfrag.whatshouldiplay.sortList.GeneralSort.sortByMode;
@@ -25,6 +27,7 @@ public class Filters {
     private Mode mode;
     private int cost;
     private Race race;
+    private boolean[] listeMecha;
 
 
     public Filters(HeroClass h,Mode m){
@@ -32,6 +35,10 @@ public class Filters {
         mode = m;
         //initialize other fields with default value
         cost = -1;
+        listeMecha = new boolean[Mechanics.values().length];
+        for(int i = 0; i < listeMecha.length;i++){
+            listeMecha[i] = false;
+        }
     }
 
 
@@ -47,12 +54,22 @@ public class Filters {
 
     public ArrayList<CardElementListe> performAdvancedSort(ArrayList<CardElementListe> l){
         ArrayList<CardElementListe> ret = l;
+        //performing the cost
         if(cost > -1) {
             ret = sortByCost(ret, cost);
         }
+        //performing the race
         if(race.compareTo(Race.NORACE) != 0) {
             ret = sortByRace(ret, race);
         }
+        //performing by mechanics
+        for(int i = 0; i < listeMecha.length;i++){
+            if(listeMecha[i]){
+                ret = sortByMechanics(ret,listeMecha);
+                break;
+            }
+        }
+
 
         return ret;
     }
@@ -87,5 +104,8 @@ public class Filters {
         return race;
     }
 
+    public void setListeMecha(boolean[] mechas){
+        listeMecha = mechas;
+    }
 
 }
