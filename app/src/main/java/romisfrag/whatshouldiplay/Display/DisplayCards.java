@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.thomashaertel.widget.MultiSpinner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import romisfrag.whatshouldiplay.Enumerations.Mechanics;
 import romisfrag.whatshouldiplay.Enumerations.Race;
@@ -25,6 +27,7 @@ import romisfrag.whatshouldiplay.GamePackage.GameInstance;
 import romisfrag.whatshouldiplay.R;
 import romisfrag.whatshouldiplay.sortList.Filters;
 
+import static android.R.drawable.*;
 import static romisfrag.whatshouldiplay.Enumerations.EnumerationTools.ArrayListFromEnum;
 import static romisfrag.whatshouldiplay.Enumerations.Race.raceFromString;
 import static romisfrag.whatshouldiplay.sortList.RankingSort.rankBy;
@@ -36,6 +39,7 @@ public class DisplayCards extends AppCompatActivity {
     SlidingUpPanelLayout slidingUpPanelLayout;
     Filters filters;
     CardElemAdapter elemAdapter;
+
 
 
 
@@ -88,7 +92,17 @@ public class DisplayCards extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
+        //Initializing the imageButton for ordering the list
+        final ImageButton sort_button = (ImageButton) findViewById(R.id.ascending_descending);
+        sort_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Collections.reverse(game_instance.get_listeCard());
+                displayListe(game_instance.get_listeCard());
             }
         });
 

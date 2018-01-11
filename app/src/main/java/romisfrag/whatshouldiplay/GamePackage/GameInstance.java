@@ -27,6 +27,7 @@ public class GameInstance implements Serializable{
 
 
 
+
     public GameInstance(ArrayList<CardElementListe> list, HeroClass hero, Mode mode,Filters filters){
         game_mode = mode;
         game_class = hero;
@@ -34,6 +35,7 @@ public class GameInstance implements Serializable{
         // performing basic sorting
         this.cardList = filters.performGeneralSort(list);
         this.cardListFilter = cardList;
+
     }
 
 
@@ -59,7 +61,6 @@ public class GameInstance implements Serializable{
 
 
 
-
     //setter
     public void set_game_mode(Mode m){
         game_mode = m;
@@ -68,6 +69,10 @@ public class GameInstance implements Serializable{
     public void set_game_class(HeroClass c){
         game_class = c;
     }
+
+
+
+
 
 
 
