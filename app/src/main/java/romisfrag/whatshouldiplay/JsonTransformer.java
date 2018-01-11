@@ -11,11 +11,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import romisfrag.whatshouldiplay.Display.CardElementListe;
+import romisfrag.whatshouldiplay.Enumerations.ERarity;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
 import romisfrag.whatshouldiplay.Enumerations.Mechanics;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
 import romisfrag.whatshouldiplay.Enumerations.Race;
 
+import static romisfrag.whatshouldiplay.Enumerations.ERarity.Free;
+import static romisfrag.whatshouldiplay.Enumerations.ERarity.stringToRarity;
 import static romisfrag.whatshouldiplay.Enumerations.Mechanics.TAUNT;
 import static romisfrag.whatshouldiplay.Enumerations.Mechanics.stringToMecha;
 import static romisfrag.whatshouldiplay.Enumerations.Race.raceFromString;
@@ -65,6 +68,7 @@ public class JsonTransformer {
         boolean tempMinion;
         int tempAttack, tempHealth;
         ArrayList<Mechanics> tempMechanics;
+        ERarity tempRarity;
 
         //Searching for all the card of standard extensions
         for(String e : Mode.getWildExtension()){
@@ -128,6 +132,12 @@ public class JsonTransformer {
                     } catch (JSONException e){
                         tempTexte = "";
                     }
+                    //getting card rarity
+                    try{
+                        tempRarity = stringToRarity(tempElem.getString("rarity"));
+                    } catch (JSONException e){
+                        tempRarity = Free;
+                    }
 
                     //getting all the mechanics
                     tempMechanics = new ArrayList<>();
@@ -159,7 +169,7 @@ public class JsonTransformer {
                     res.add(new CardElementListe(tempName, tempCost, tempUrl,
                             HeroClass.stringToHeroClass(tempClass),
                             tempSet, tempsIsCollectible, tempRace,tempGold,tempMinion,
-                            tempAttack,tempHealth,tempFlavor,tempMechanics,tempTexte));
+                            tempAttack,tempHealth,tempFlavor,tempMechanics,tempTexte,tempRarity));
                 } catch (JSONException e1) {
                     tempName = "";
                     try {
