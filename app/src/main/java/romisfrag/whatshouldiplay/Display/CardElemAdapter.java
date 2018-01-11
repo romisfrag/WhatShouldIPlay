@@ -47,9 +47,34 @@ public class CardElemAdapter extends ArrayAdapter<CardElementListe> {
         //getting the element of the list
         elem = liste.get(position);
         final CardElementListe tempElem = elem;
-        //putting the text of the element
-        final TextView textElem = (TextView) convertView.findViewById(R.id.texte_carte_elem_liste);
-        textElem.setText(elem.getName());
+        //putting the name of the card
+        final TextView cardName = (TextView) convertView.findViewById(R.id.card_liste_name);
+        cardName.setText(""+elem.getName());
+        //putting the cost of the card
+        final TextView cardCost = (TextView) convertView.findViewById(R.id.card_liste_cost);
+        cardCost.setText(""+elem.getCost());
+        //putting the text of the card
+        final TextView cardEffect = (TextView) convertView.findViewById(R.id.card_liste_effect);
+        cardEffect.setText(""+elem.getTexte());
+
+        /*
+        <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_liste_name"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_liste_effect"/>
+
+    </LinearLayout>
+         */
+
         //making the listener on the element of the list view
         convertView.setOnClickListener(new View.OnClickListener() {
             //TODO :: solve this problem
