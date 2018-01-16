@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -72,13 +73,16 @@ public class CardElemAdapter extends ArrayAdapter<CardElementListe> {
 
         //putting the icon of a card
         if(elem.minion){
-            ImageView attack_view = (ImageView) convertView.findViewById(R.id.attack_adapteur);
-            ImageView defense_view = (ImageView) convertView.findViewById(R.id.defense_adapteur);
-            attack_view.setImageResource(R.drawable.attack);
-            defense_view.setImageResource(R.drawable.health);
+            TextView attack_view = (TextView) convertView.findViewById(R.id.attack_adapteur);
+            TextView defense_view = (TextView) convertView.findViewById(R.id.defense_adapteur);
+            attack_view.setBackgroundResource(R.drawable.attack);
+            defense_view.setBackgroundResource(R.drawable.health);
         }
         else{
-
+            TextView attack_view = (TextView) convertView.findViewById(R.id.attack_adapteur);
+            TextView defense_view = (TextView) convertView.findViewById(R.id.defense_adapteur);
+            attack_view.setBackgroundResource(R.color.transparent);
+            defense_view.setBackgroundResource(R.color.transparent);
         }
 
         /*
