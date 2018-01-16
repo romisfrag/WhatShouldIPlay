@@ -73,23 +73,28 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="gauche"
-                android:id="@+id/leftCost"/>
+                android:id="@+id/leftCost"
+                android:scaleX="-1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/arrow"/>
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/costTexte"
-                android:text="0"/>
+                android:src="@drawable/cristalall"/>
 
-            <Button
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="droite"
-                android:id="@+id/rightCost"/>
+                android:id="@+id/rightCost"
+                android:background="@android:color/transparent"
+                android:src="@drawable/arrow"/>
         </LinearLayout>
 
 
