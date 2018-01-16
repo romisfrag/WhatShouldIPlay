@@ -13,17 +13,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".initialActivities.LoadingScreen">
+        <activity android:name=".initialActivities.LoadingScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GamePackage.ParameterMenu" />
-        <activity android:name=".Display.DisplayCards" />
-        <activity android:name=".Display.DisplayCardElem" />
-        <activity android:name=".initialActivities.MainMenu"></activity>
+        <activity android:name=".GamePackage.ParameterMenu"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Display.DisplayCards"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Display.DisplayCardElem"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".initialActivities.MainMenu"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
