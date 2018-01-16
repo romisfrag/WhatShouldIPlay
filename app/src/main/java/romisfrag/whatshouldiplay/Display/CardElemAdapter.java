@@ -3,6 +3,7 @@ package romisfrag.whatshouldiplay.Display;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,13 +30,17 @@ public class CardElemAdapter extends ArrayAdapter<CardElementListe> {
     final int layoutresource;
     DisplayCards displayCards;
     CardElementListe elem;
+    Resources resources;
+    String getPackageName;
 
     public CardElemAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<CardElementListe> objects,
-                           DisplayCards display_cards_activity) {
+                           DisplayCards display_cards_activity, Resources resources, String packageName) {
         super(context, resource, objects);
         layoutresource = resource;
         liste = objects;
+        this.resources = resources;
         displayCards = display_cards_activity;
+        this.getPackageName = packageName;
     }
 
     @NonNull
@@ -51,11 +57,29 @@ public class CardElemAdapter extends ArrayAdapter<CardElementListe> {
         final TextView cardName = (TextView) convertView.findViewById(R.id.card_liste_name);
         cardName.setText(""+elem.getName());
         //putting the cost of the card
-        final TextView cardCost = (TextView) convertView.findViewById(R.id.card_liste_cost);
-        cardCost.setText(""+elem.getCost());
+        final ImageView cardCost = (ImageView) convertView.findViewById(R.id.card_liste_cost);
+        if(elem.getCost() >= 7){
+            cardCost.setImageResource(R.drawable.cristal7);
+        }
+        else{
+            int id =  resources.getIdentifier(("cristal"+elem.getCost()),"drawable",getPackageName);
+            cardCost.setImageResource(id);
+        }
         //putting the text of the card
         final TextView cardEffect = (TextView) convertView.findViewById(R.id.card_liste_effect);
         cardEffect.setText(""+elem.getTexte());
+
+
+        //putting the icon of a card
+        if(elem.minion){
+            ImageView attack_view = (ImageView) convertView.findViewById(R.id.attack_adapteur);
+            ImageView defense_view = (ImageView) convertView.findViewById(R.id.defense_adapteur);
+            attack_view.setImageResource(R.drawable.attack);
+            defense_view.setImageResource(R.drawable.health);
+        }
+        else{
+
+        }
 
         /*
         <LinearLayout

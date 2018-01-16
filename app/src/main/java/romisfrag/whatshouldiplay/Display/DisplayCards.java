@@ -119,7 +119,6 @@ public class DisplayCards extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 filters.decrCost();
-                Toast.makeText(DisplayCards.this, "moins", Toast.LENGTH_SHORT).show();
                 int id = getResources().getIdentifier(("cristal"+filters.getCost()),"drawable",getPackageName());
                 costTexte.setImageResource(id);
                 //costTexte.setText(""+filters.getCost());
@@ -129,7 +128,6 @@ public class DisplayCards extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 filters.incrCost();
-                Toast.makeText(DisplayCards.this, "plus", Toast.LENGTH_SHORT).show();
                 int id = getResources().getIdentifier(("cristal"+filters.getCost()),"drawable",getPackageName());
                 costTexte.setImageResource(id);
                 //costTexte.setText(""+filters.getCost());
@@ -205,8 +203,9 @@ public class DisplayCards extends AppCompatActivity {
     public void displayListe(ArrayList<CardElementListe> listeOfCard) {
         final ListView lView = (ListView) findViewById(R.id.display_card_liste);
         elemAdapter =
-                new CardElemAdapter(this, R.layout.carte_elem_liste,listeOfCard,this);
+                new CardElemAdapter(this, R.layout.carte_elem_liste,listeOfCard,this,getResources(),getPackageName());
         lView.setAdapter(elemAdapter);
+
         elemAdapter.notifyDataSetChanged();
 
     }
