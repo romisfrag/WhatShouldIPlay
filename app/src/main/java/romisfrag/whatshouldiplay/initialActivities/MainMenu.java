@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 
 import romisfrag.whatshouldiplay.ApplicationCustom;
 import romisfrag.whatshouldiplay.GamePackage.ParameterMenu;
@@ -23,7 +24,7 @@ public class MainMenu extends AppCompatActivity implements UseRequester{
         final ApplicationCustom app = (ApplicationCustom)getApplication();
 
 
-        Button game_instance_button = (Button)findViewById(R.id.GameInstanceButton);
+        ImageButton game_instance_button = (ImageButton)findViewById(R.id.GameInstanceButton);
         game_instance_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +33,7 @@ public class MainMenu extends AppCompatActivity implements UseRequester{
             }
         });
 
-        Button update_button = (Button)findViewById(R.id.updateButton);
+        ImageButton update_button = (ImageButton)findViewById(R.id.updateButton);
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="bottom"
-    android:background="@drawable/cardlist"
     sothree:umanoPanelHeight="68dp"
     sothree:umanoShadowHeight="2dp"
     >
 
     <LinearLayout
+        android:background="@drawable/cardlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -51,7 +51,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/filters">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,42 +60,44 @@
             android:orientation="vertical"
             android:id="@+id/panelVisible">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center|top"
-                android:text="Filters"
-                android:textSize="16sp" />
-
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:text="gauche"
                 android:id="@+id/leftCost"
                 android:scaleX="-1"
+                android:scaleType="fitXY"
                 android:background="@android:color/transparent"
                 android:src="@drawable/arrow"/>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
                 android:id="@+id/costTexte"
                 android:src="@drawable/cristalall"/>
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:text="droite"
+                android:scaleType="fitXY"
                 android:id="@+id/rightCost"
                 android:background="@android:color/transparent"
                 android:src="@drawable/arrow"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_delete"
+                android:id="@+id/delete_cost"/>
         </LinearLayout>
 
 

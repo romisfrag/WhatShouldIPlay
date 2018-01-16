@@ -1,18 +1,15 @@
 package romisfrag.whatshouldiplay.Display;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -29,7 +26,6 @@ import romisfrag.whatshouldiplay.GamePackage.GameInstance;
 import romisfrag.whatshouldiplay.R;
 import romisfrag.whatshouldiplay.sortList.Filters;
 
-import static android.R.drawable.*;
 import static romisfrag.whatshouldiplay.Enumerations.EnumerationTools.ArrayListFromEnum;
 import static romisfrag.whatshouldiplay.Enumerations.Race.raceFromString;
 import static romisfrag.whatshouldiplay.sortList.RankingSort.rankBy;
@@ -115,12 +111,14 @@ public class DisplayCards extends AppCompatActivity {
         ImageButton left = (ImageButton) findViewById(R.id.leftCost);
         ImageButton right = (ImageButton) findViewById(R.id.rightCost);
         final ImageView costTexte = (ImageView) findViewById(R.id.costTexte);
+        ImageButton deleteCost = (ImageButton) findViewById(R.id.delete_cost);
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 filters.decrCost();
                 Toast.makeText(DisplayCards.this, "moins", Toast.LENGTH_SHORT).show();
-                getResources().getIdentifier(("cristal"+filters.getCost()),"drawable",getPackageName());
+                int id = getResources().getIdentifier(("cristal"+filters.getCost()),"drawable",getPackageName());
+                costTexte.setImageResource(id);
                 //costTexte.setText(""+filters.getCost());
             }
         });
@@ -129,8 +127,16 @@ public class DisplayCards extends AppCompatActivity {
             public void onClick(View view) {
                 filters.incrCost();
                 Toast.makeText(DisplayCards.this, "plus", Toast.LENGTH_SHORT).show();
-                getResources().getIdentifier(("cristal"+filters.getCost()),"drawable",getPackageName());
+                int id = getResources().getIdentifier(("cristal"+filters.getCost()),"drawable",getPackageName());
+                costTexte.setImageResource(id);
                 //costTexte.setText(""+filters.getCost());
+            }
+        });
+        deleteCost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filters.deleteCost();
+                costTexte.setImageResource(R.drawable.cristalall);
             }
         });
 

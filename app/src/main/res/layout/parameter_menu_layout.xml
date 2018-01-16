@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context="romisfrag.whatshouldiplay.GamePackage.ParameterMenu"
-    android:background="@drawable/background"
+    android:background="@drawable/background_"
     android:scaleType="centerCrop"
     >
 

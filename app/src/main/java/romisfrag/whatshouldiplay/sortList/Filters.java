@@ -103,6 +103,10 @@ public class Filters {
         }
     }
 
+    public void deleteCost(){
+        cost = -1;
+    }
+
 
     //getter setters
     public int getCost(){
