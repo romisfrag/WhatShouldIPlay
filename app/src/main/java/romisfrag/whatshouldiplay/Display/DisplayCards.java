@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -75,6 +76,8 @@ public class DisplayCards extends AppCompatActivity {
                 }
             }
         });
+        LinearLayout panelVisible = (LinearLayout) findViewById(R.id.panelVisible);
+        slidingUpPanelLayout.setDragView(panelVisible);
 
         //Initializing the spinner for sorting list
         Spinner sort_spinner = (Spinner) findViewById(R.id.sort_spinner);
