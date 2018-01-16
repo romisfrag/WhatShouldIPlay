@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -54,9 +58,11 @@ public class CardElemAdapter extends ArrayAdapter<CardElementListe> {
         //getting the element of the list
         elem = liste.get(position);
         final CardElementListe tempElem = elem;
+
         //putting the name of the card
         final TextView cardName = (TextView) convertView.findViewById(R.id.card_liste_name);
         cardName.setText(""+elem.getName());
+        cardName.setPaintFlags(cardName.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         //putting the cost of the card
         final ImageView cardCost = (ImageView) convertView.findViewById(R.id.card_liste_cost);
         if(elem.getCost() >= 7){
@@ -68,7 +74,9 @@ public class CardElemAdapter extends ArrayAdapter<CardElementListe> {
         }
         //putting the text of the card
         final TextView cardEffect = (TextView) convertView.findViewById(R.id.card_liste_effect);
-        cardEffect.setText(""+elem.getTexte());
+
+        cardEffect.setText(Html.fromHtml(""+elem.getTexte()));
+
 
 
         //putting the icon of a card
