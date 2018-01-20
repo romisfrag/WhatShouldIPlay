@@ -64,11 +64,11 @@ public class DisplayCards extends AppCompatActivity {
             public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
                 switch(newState) {
                     case EXPANDED:
-                        Toast.makeText(getApplicationContext(), "EXPANDED", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "EXPANDED", Toast.LENGTH_SHORT).show();
 
                         break;
                     case COLLAPSED:
-                        Toast.makeText(getApplicationContext(), "COLLAPSED", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "COLLAPSED", Toast.LENGTH_SHORT).show();
                         game_instance.performAdvancedSort(filters);
                         displayListe(game_instance.get_listeCard());
                         break;

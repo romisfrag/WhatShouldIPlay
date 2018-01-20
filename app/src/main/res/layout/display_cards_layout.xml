@@ -66,40 +66,12 @@
             android:layout_height="90dp"
             android:orientation="vertical"
             android:id="@+id/panelVisible">
-
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_gravity="center">
-
-            <ImageButton
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="gauche"
-                android:id="@+id/leftCost"
-                android:scaleX="-1"
-                android:scaleType="fitXY"
-                android:background="@android:color/transparent"
-                android:src="@drawable/arrow"/>
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:scaleType="fitXY"
-                android:id="@+id/costTexte"
-                android:src="@drawable/cristalall"/>
-
-            <ImageButton
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="droite"
-                android:scaleType="fitXY"
-                android:id="@+id/rightCost"
-                android:background="@android:color/transparent"
-                android:src="@drawable/arrow"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -109,6 +81,63 @@
                 android:id="@+id/delete_cost"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageButton
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:text="gauche"
+                    android:id="@+id/leftCost"
+                    android:scaleX="-1"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/arrow"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="fitCenter"
+                    android:id="@+id/costTexte"
+                    android:src="@drawable/cristalall"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+
+                <ImageButton
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:text="droite"
+                    android:scaleType="fitCenter"
+                    android:id="@+id/rightCost"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/arrow"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -119,15 +148,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="10dp"
                 android:text="Choose the race"/>
             <Spinner
                 android:id="@+id/race_spinner"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:text="Choose the Mechanics"
                 />
 
@@ -139,7 +171,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="What are worried about"/>
+                android:paddingTop="10dp"
+                android:text="Effects"/>
 
             <com.thomashaertel.widget.MultiSpinner
                 android:id="@+id/worriesSpinner"

@@ -3,7 +3,9 @@ package romisfrag.whatshouldiplay.Display;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,15 +76,15 @@ public class DisplayCardElem extends AppCompatActivity {
         if(nbTry >= 0) {
             nbTry--;
             if (app.getGoldMode()) {
-                Toast.makeText(app, "gold" + card.getGold_url(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(app, "gold" + card.getGold_url(), Toast.LENGTH_SHORT).show();
                 new ImageLoader(this, card.getGold_url(), true).execute();
             } else {
-                Toast.makeText(app, "pasglod", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(app, "pasglod", Toast.LENGTH_SHORT).show();
                 new ImageLoader(this, card.get_imageUrl(), false).execute();
             }
         }
         else{
-            Toast.makeText(app, "All try done but can't load image", Toast.LENGTH_SHORT).show();
+            Toast.makeText(app, "Cannot load image", Toast.LENGTH_SHORT).show();
         }
     }
 
