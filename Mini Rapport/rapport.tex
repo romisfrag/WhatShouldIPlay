@@ -1,0 +1,53 @@
+\documentclass[a4paper,oneside,10pt]{extarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{caption}
+\usepackage{pgfplots}
+\usepackage{mathabx}
+\usepackage{amsthm}
+\usepackage{url}
+\pgfplotsset{compat=1.14}
+\usepackage[margin=1.5in]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{float}
+\fancyhead[L]{TPDEV}
+\fancyhead[R]{Roman Delgado \& Sylvain Ung}
+\cfoot{}
+
+\begin{document}
+\begin{center}\Large
+Rapport de projet Android
+
+WhatShouoldIPlay
+\end{center}
+\vspace*{0.25cm}
+
+\section{Introduction}
+
+WhatShouldIPlay est une application qui recense toutes les cartes du jeu Hearthstone développé par Blizzard. A l'aide de filtres personnalisables, l'application a pour vocation d'aider le joueur dans sa prise de décision en lui exhibant certains types de cartes, typiquement les plus gênantes pour lui, lors de ses parties.
+
+\begin{figure}[H]
+    \begin{minipage}[c]{.46\linewidth}
+        \centering
+        \fbox{\includegraphics[scale=0.4]{images/screen1}}
+        \caption{Sélection du héros adverse}
+    \end{minipage} \hfill%
+    \begin{minipage}[c]{.46\linewidth}
+        \centering
+        \fbox{\includegraphics[scale=0.4]{images/screen2}}
+        \caption{Liste de cartes}
+    \end{minipage}
+\end{figure}
+
+L'utilisateur a ensuite la possibilité de consulter la carte pour obtenir toutes les informations dont il a besoin.
+
+\newpage
+\input{perso}
+
+\end{document}
