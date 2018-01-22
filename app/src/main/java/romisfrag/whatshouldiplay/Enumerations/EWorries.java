@@ -7,6 +7,8 @@ package romisfrag.whatshouldiplay.Enumerations;
 public enum EWorries {
 
     AOE,
-    FACEDAMMAGE;
+    A,
+    B,
+    C;
 
 }
