@@ -126,19 +126,21 @@
 
             </LinearLayout>
 
-            <LinearLayout
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:src="@android:drawable/ic_delete"
-                    android:id="@+id/delete_cost"/>
-            </LinearLayout>
-
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_delete"
+                android:id="@+id/delete_cost"/>
         </LinearLayout>
 
         <LinearLayout
@@ -153,33 +155,61 @@
                 android:layout_gravity="center"
                 android:paddingTop="10dp"
                 android:text="Choose the race"/>
-            <Spinner
-                android:id="@+id/race_spinner"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/race_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:text="Choose the Mechanics"
+                android:layout_gravity="center"
                 />
 
-            <com.thomashaertel.widget.MultiSpinner
-                android:id="@+id/mechanicSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <com.thomashaertel.widget.MultiSpinner
+                    android:id="@+id/mechanicSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:paddingTop="10dp"
                 android:text="Effects"/>
 
-            <com.thomashaertel.widget.MultiSpinner
-                android:id="@+id/worriesSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <com.thomashaertel.widget.MultiSpinner
+                    android:id="@+id/worriesSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
 
         </LinearLayout>

@@ -6,10 +6,10 @@ package romisfrag.whatshouldiplay.Enumerations;
 
 public enum Mechanics {
     Battlecry,
-    DEATHRATTLE,
-    CHARGE,
-    TAUNT,
-    DIVINE,
+    Deathrattle,
+    Charge,
+    Taunt,
+    Divine,
     Stealth,
     Enrage,
     Windfury,
@@ -30,13 +30,13 @@ public enum Mechanics {
             case "Battlecry":
                 return Battlecry;
             case "Deathrattle":
-                return DEATHRATTLE;
+                return Deathrattle;
             case "Charge":
-                return CHARGE;
+                return Charge;
             case "Taunt":
-                return TAUNT;
+                return Taunt;
             case "Divine Shield":
-                return DIVINE;
+                return Divine;
             case "Stealth":
                 return Stealth;
             case "Enrage":

@@ -19,7 +19,6 @@ import romisfrag.whatshouldiplay.Enumerations.Race;
 
 import static romisfrag.whatshouldiplay.Enumerations.ERarity.Free;
 import static romisfrag.whatshouldiplay.Enumerations.ERarity.stringToRarity;
-import static romisfrag.whatshouldiplay.Enumerations.Mechanics.TAUNT;
 import static romisfrag.whatshouldiplay.Enumerations.Mechanics.stringToMecha;
 import static romisfrag.whatshouldiplay.Enumerations.Race.raceFromString;
 
