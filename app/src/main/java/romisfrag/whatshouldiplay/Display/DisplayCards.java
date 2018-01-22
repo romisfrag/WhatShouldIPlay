@@ -144,6 +144,8 @@ public class DisplayCards extends AppCompatActivity {
             }
         });
 
+        initLessCostChecbox();
+
         //Race spinner
         initRaceSpinner();
 
@@ -183,6 +185,20 @@ public class DisplayCards extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 filters.setOnlyMinions(isChecked);
+            }
+        });
+    }
+
+    private void initLessCostChecbox(){
+        filters.setLessCost(false);
+        CheckBox lessCostCheckbox = (CheckBox) findViewById(R.id.costLessCheckBox);
+        if(lessCostCheckbox.isChecked()){
+            lessCostCheckbox.toggle();
+        }
+        lessCostCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                filters.setLessCost(isChecked);
             }
         });
     }
@@ -255,6 +271,7 @@ public class DisplayCards extends AppCompatActivity {
         initRaceSpinner();
         initWorriesSpinner();
         initMinionCheckBox();
+        initLessCostChecbox();
     }
 
 

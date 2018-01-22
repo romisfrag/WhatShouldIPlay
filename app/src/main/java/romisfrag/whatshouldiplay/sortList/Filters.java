@@ -9,6 +9,7 @@ import romisfrag.whatshouldiplay.Enumerations.Mechanics;
 import romisfrag.whatshouldiplay.Enumerations.Mode;
 
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByCost;
+import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByCostLess;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByMechanics;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByRace;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByType;
@@ -28,6 +29,7 @@ public class Filters {
     private HeroClass heroClass;
     private Mode mode;
     private int cost;
+    private boolean lessCost;
     private Race race;
     private boolean[] listeMecha;
     private boolean[] listeWorries;
@@ -50,7 +52,7 @@ public class Filters {
         }
 
         onlyMinions = false;
-
+        lessCost = false;
     }
 
 
@@ -67,8 +69,11 @@ public class Filters {
     public ArrayList<CardElementListe> performAdvancedSort(ArrayList<CardElementListe> l){
         ArrayList<CardElementListe> ret = l;
         //performing the cost
-        if(cost > -1) {
+        if(cost > -1 && lessCost == false) {
             ret = sortByCost(ret, cost);
+        }
+        else if(cost > -1 && lessCost){
+            ret = sortByCostLess(ret,cost);
         }
         //performing the race
         if(race.compareTo(Race.NORACE) != 0) {
@@ -140,6 +145,10 @@ public class Filters {
 
     public Race getRace(){
         return race;
+    }
+
+    public void setLessCost(boolean b){
+        lessCost = b;
     }
 
     public void setListeMecha(boolean[] mechas){

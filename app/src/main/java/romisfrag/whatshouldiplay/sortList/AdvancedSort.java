@@ -34,6 +34,15 @@ public class AdvancedSort {
         return newList;
     }
 
+    static public ArrayList<CardElementListe> sortByCostLess (ArrayList<CardElementListe> l, int c){
+        ArrayList<CardElementListe> newList = new ArrayList<>();
+        for(int i = c; i >= 0; i--){
+            newList.addAll(sortByCost(l,i));
+        }
+
+        return newList;
+    }
+
     static public ArrayList<CardElementListe> sortByType(ArrayList<CardElementListe> l, boolean minion) {
         ArrayList<CardElementListe> res = new ArrayList<>();
         for(CardElementListe card : l){
