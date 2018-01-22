@@ -1,6 +1,7 @@
 package romisfrag.whatshouldiplay.sortList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import romisfrag.whatshouldiplay.Display.CardElementListe;
 import romisfrag.whatshouldiplay.Enumerations.HeroClass;
@@ -10,6 +11,7 @@ import romisfrag.whatshouldiplay.Enumerations.Mode;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByCost;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByMechanics;
 import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByRace;
+import static romisfrag.whatshouldiplay.sortList.AdvancedSort.sortByType;
 import static romisfrag.whatshouldiplay.sortList.GeneralSort.sortByClass;
 import static romisfrag.whatshouldiplay.sortList.GeneralSort.sortByMode;
 import static romisfrag.whatshouldiplay.sortList.Worries.performWorriesSort;
@@ -29,6 +31,7 @@ public class Filters {
     private Race race;
     private boolean[] listeMecha;
     private boolean[] listeWorries;
+    boolean onlyMinions;
 
 
     public Filters(HeroClass h,Mode m){
@@ -45,6 +48,8 @@ public class Filters {
         for(int i = 0; i < listeWorries.length;i++){
             listeWorries[i] = false;
         }
+
+        onlyMinions = false;
 
     }
 
@@ -84,7 +89,19 @@ public class Filters {
             }
         }
 
+        //getting out all the nonMinions
+        if(onlyMinions){
+            ret = sortByType(ret,true);
+        }
+
         return ret;
+    }
+
+
+    public boolean[] initArrayBoolFalse(int lenght){
+        boolean[] res = new boolean[lenght];
+        Arrays.fill(res, false);
+        return res;
     }
 
 
@@ -115,6 +132,10 @@ public class Filters {
 
     public void setRace(Race r){
         this.race = r;
+    }
+
+    public void setOnlyMinions(boolean b){
+        onlyMinions = b;
     }
 
     public Race getRace(){

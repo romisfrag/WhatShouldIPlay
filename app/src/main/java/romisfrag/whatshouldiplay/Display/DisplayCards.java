@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +31,7 @@ import romisfrag.whatshouldiplay.R;
 import romisfrag.whatshouldiplay.sortList.Filters;
 
 import static romisfrag.whatshouldiplay.Enumerations.EnumerationTools.ArrayListFromEnum;
+import static romisfrag.whatshouldiplay.Enumerations.Race.NORACE;
 import static romisfrag.whatshouldiplay.Enumerations.Race.raceFromString;
 import static romisfrag.whatshouldiplay.sortList.RankingSort.rankBy;
 
@@ -77,13 +81,13 @@ public class DisplayCards extends AppCompatActivity {
             }
         });
         LinearLayout panelVisible = (LinearLayout) findViewById(R.id.panelVisible);
-        slidingUpPanelLayout.setDragView(panelVisible);
+        //slidingUpPanelLayout.setDragView(panelVisible);
 
         //Initializing the spinner for sorting list
         Spinner sort_spinner = (Spinner) findViewById(R.id.sort_spinner);
         final ArrayList<String> ranking_liste = ArrayListFromEnum(Ranking.values());
         ArrayAdapter<String> spinner_adapter_ranking = new ArrayAdapter(getApplicationContext(),
-                android.R.layout.simple_spinner_item, ranking_liste);
+                android.R.layout.simple_list_item_1, ranking_liste);
         sort_spinner.setAdapter(spinner_adapter_ranking);
         sort_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -114,7 +118,7 @@ public class DisplayCards extends AppCompatActivity {
         ImageButton left = (ImageButton) findViewById(R.id.leftCost);
         ImageButton right = (ImageButton) findViewById(R.id.rightCost);
         final ImageView costTexte = (ImageView) findViewById(R.id.costTexte);
-        ImageButton deleteCost = (ImageButton) findViewById(R.id.delete_cost);
+        final ImageButton deleteCost = (ImageButton) findViewById(R.id.delete_cost);
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,12 +140,56 @@ public class DisplayCards extends AppCompatActivity {
         deleteCost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filters.deleteCost();
-                costTexte.setImageResource(R.drawable.cristalall);
+                deleteCost(costTexte);
             }
         });
 
         //Race spinner
+        initRaceSpinner();
+
+        //mechanic multi spinner
+        initMechanicSpinner();
+
+
+        //worries multi spinner
+        initWorriesSpinner();
+
+        //default_filters_button
+        Button default_filters_button = (Button) findViewById(R.id.default_filters_button);
+        default_filters_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                reinitFilters(costTexte);
+            }
+        });
+
+        //checkbox for only minions
+        initMinionCheckBox();
+
+
+        //starting the request
+        displayListe(game_instance.get_listeCard());
+
+    }
+
+    private void initMinionCheckBox(){
+        filters.setOnlyMinions(false);
+        CheckBox minionCheckBox = (CheckBox) findViewById(R.id.minionCheckBox);
+        if(minionCheckBox.isChecked()){
+            minionCheckBox.toggle();
+        }
+        minionCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                filters.setOnlyMinions(isChecked);
+            }
+        });
+    }
+
+    private void initRaceSpinner(){
+        filters.setRace(NORACE);
+
         Spinner spinner = (Spinner) findViewById(R.id.race_spinner);
         final ArrayList<String> liste_spinner = ArrayListFromEnum(Race.values());
         ArrayAdapter<String> spinner_adapter = new ArrayAdapter(getApplicationContext(),
@@ -156,47 +204,58 @@ public class DisplayCards extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
+    }
 
-        //mechanic multi spinner
+    private void initMechanicSpinner(){
         MultiSpinner multiSpinner = (MultiSpinner) findViewById(R.id.mechanicSpinner);
         ArrayList<String> listeMecha = ArrayListFromEnum(Mechanics.values());
+
+        filters.setListeMecha(filters.initArrayBoolFalse(listeMecha.size()));
+
         ArrayAdapter<String> adapterMecha =
-                new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,listeMecha);
+                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listeMecha);
         multiSpinner.setAdapter(adapterMecha, false, new MultiSpinner.MultiSpinnerListener() {
             @Override
             public void onItemsSelected(boolean[] selected) {
                 filters.setListeMecha(selected);
             }
         });
+    }
 
-        //worries multi spinner
+    private void initWorriesSpinner(){
+
         MultiSpinner worriesSpinner = (MultiSpinner) findViewById(R.id.worriesSpinner);
         ArrayList<String> listeWorries = ArrayListFromEnum(EWorries.values());
 
-        Toast.makeText(this, "length :"+listeWorries.size(), Toast.LENGTH_SHORT).show();
+        filters.setListeWorries(filters.initArrayBoolFalse(listeWorries.size()));
 
-        ArrayAdapter<String> worriesAdapter =
-                new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,listeWorries);
+
+        final ArrayAdapter<String> worriesAdapter =
+                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listeWorries);
         worriesSpinner.setAdapter(worriesAdapter, false, new MultiSpinner.MultiSpinnerListener() {
             @Override
             public void onItemsSelected(boolean[] selected) {
                 filters.setListeWorries(selected);
             }
         });
-
-
-
-
-        //starting the request
-        displayListe(game_instance.get_listeCard());
-
     }
 
 
 
+    private void deleteCost(ImageView costTexte){
+        filters.deleteCost();
+        costTexte.setImageResource(R.drawable.cristalall);
+    }
+
+    public void reinitFilters(ImageView costTexte){
+        deleteCost(costTexte);
+        initMechanicSpinner();
+        initRaceSpinner();
+        initWorriesSpinner();
+        initMinionCheckBox();
+    }
 
 
     //affiche la liste fournie en argument
